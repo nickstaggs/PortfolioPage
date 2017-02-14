@@ -1,1 +1,14 @@
+#Contact img {
+  height: 10%;
+  width: 10%;
+  padding: 5%;
+}
 
+.slider {
+  border-width: medium;
+  border-color: black;
+}
+
+#Contact {
+  box-sizing: initial;
+}
