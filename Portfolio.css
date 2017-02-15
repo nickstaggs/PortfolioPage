@@ -12,3 +12,18 @@
 #Contact {
   box-sizing: initial;
 }
+
+.parallax img {
+    max-width: 100%;
+    max-height: 2000%;
+}
+
+.logo {
+  font-size: 4em;
+  font-family: 'Barrio', cursive;
+  padding-left: .1em;
+}
+
+nav {
+  background-color: black;
+}
