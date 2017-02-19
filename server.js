@@ -2,7 +2,7 @@
 var express = require('express');
 var favicon = require("serve-favicon");
 var app = express(); 						// create our app w/ express
-app.use(favicon(__dirname + "\\public\\images\\favicon.ico"));
+//app.use(favicon(__dirname + "\\public\\images\\favicon.ico"));
 //var mongoose = require('mongoose'); 				// mongoose for mongodb
 var port = process.env.PORT || 8080; 				// set the port
 //var database = require('./config/database'); 			// load the database config
