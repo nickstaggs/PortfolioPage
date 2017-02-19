@@ -27,3 +27,8 @@
 nav {
   background-color: black;
 }
+
+.slider .slides li .caption {
+  top: 5%;
+  left: 5%;
+}
