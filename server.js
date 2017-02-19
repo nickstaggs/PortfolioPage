@@ -17,7 +17,7 @@ var winston = require("winston");
 
 // set the static files location /public/img will be /img for users app.use(express.static('./public'));
 app.use(express.static('./public'));
-app.use(favicon(__dirname + "/public/images/favicon.ico"));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // create a write stream (in append mode) C:\Users\Nick Staggs\Documents\PortfolioPage\public\images\favicon.ico
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
@@ -63,3 +63,4 @@ require('./app/routes.js')(app);
 // listen (start app with node server.js) ======================================
 app.listen(port);
 logger.info("App listening on port " + port);
+logger.info(path.join(__dirname, 'public', 'images', 'favicon.ico'));
