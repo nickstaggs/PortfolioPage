@@ -17,7 +17,7 @@ var winston = require("winston");
 
 // set the static files location /public/img will be /img for users app.use(express.static('./public'));
 app.use(express.static('./public'));
-app.use(favicon(__dirname + "\\public\\images\\favicon.ico"));
+app.use(favicon(__dirname + "/public/images/favicon.ico"));
 
 // create a write stream (in append mode) C:\Users\Nick Staggs\Documents\PortfolioPage\public\images\favicon.ico
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})

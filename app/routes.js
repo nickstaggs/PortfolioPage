@@ -5,7 +5,7 @@ module.exports = function (app) {
 
   app.get('/', function (req, res) {
     //path.resolve(__dirname, '.../public')
-    res.sendFile(__dirname+ '\\..\\public\\index.html');
+    res.sendFile(__dirname+ '/../public/index.html');
 
     logger.info("Request: " + req + "\nResponse: " + res);
   });
