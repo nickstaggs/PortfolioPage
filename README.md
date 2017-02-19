@@ -1,2 +1,2 @@
 # PortfolioPage
-Portfolio page which will eventually be located at nickstaggs.com
+Portfolio page which is located at www.nickstaggs.com
