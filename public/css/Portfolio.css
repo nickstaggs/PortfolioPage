@@ -32,3 +32,36 @@ nav {
   top: 5%;
   left: 5%;
 }
+
+.parallax h1 {
+  text-align: center;
+  color: white;
+  position: relative;
+  width: 100%;
+}
+
+.parallax h1:after{
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 1px;
+    bottom: 0;
+    left: 45%;
+    border-bottom: .01em solid white;
+}
+
+.parallax p {
+  color:white;
+  z-index: auto;
+  text-align: center;
+
+}
+
+.about-text-box {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: .01em;
+}
+
+.parallax img {
+  z-index: -5;
+}
