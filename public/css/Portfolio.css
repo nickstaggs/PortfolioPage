@@ -1,7 +1,6 @@
 #Contact img {
-  height: 10%;
-  width: 10%;
-  padding: 5%;
+    width: 46%;
+    padding-top: 13%;
 }
 
 .slider {
@@ -58,10 +57,16 @@ nav {
 }
 
 .about-text-box {
-  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 5%;
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: .01em;
 }
 
 .parallax img {
   z-index: -5;
+}
+
+nav ul a:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
 }
