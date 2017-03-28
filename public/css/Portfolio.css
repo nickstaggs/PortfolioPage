@@ -17,6 +17,10 @@
     max-height: 2000%;
 }
 
+.parallax-container {
+  height: 90vh !important;
+}
+
 .logo {
   font-size: 4em;
   font-family: 'Barrio', cursive;
@@ -69,4 +73,8 @@ nav {
 nav ul a:hover {
     background-color: rgba(255, 255, 255, 1);
     color: black;
+}
+
+.pdfobject-container {
+  height: 88vh;
 }

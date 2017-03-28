@@ -35,6 +35,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('X-HTTP-Method-Override'));
 
+
 /*******************************************************************************
 * LOGGER
 *******************************************************************************/
