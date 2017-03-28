@@ -12,7 +12,6 @@ var methodOverride = require('method-override');
 var path = require('path');
 var fs = require('fs');
 var winston = require("winston");
-
 // configuration ===============================================================
 
 // set the static files location /public/img will be /img for users app.use(express.static('./public'));
