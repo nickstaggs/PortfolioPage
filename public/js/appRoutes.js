@@ -9,8 +9,13 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 
 		.when('/resume', {
-			templateUrl: 'templates/iframe.html',
+			templateUrl: 'templates/pdfRenderer.html',
 			controller: 'ResumeController'
+		})
+
+		.otherwise({
+			templateUrl: 'templates/404.html',
+			controller: 'ErrorController'
 		})
 
     $locationProvider.html5Mode({
