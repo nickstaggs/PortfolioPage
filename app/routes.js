@@ -1,8 +1,8 @@
 module.exports = function (app) {
-  
+
   var path = require('path');
-  var winston = require('winston');
-  //winston.add(winston.transports.File, { filename: 'routesjs.log' });
+  var logger = require('winston');
+  logger.add(logger.transports.File, { filename: 'routesjs.log' });
 
   app.get('/', function (req, res) {
     //path.resolve(__dirname, '.../public')
@@ -10,4 +10,10 @@ module.exports = function (app) {
 
     logger.info("Request: " + req + "\nResponse: " + res);
   });
-};
+
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'public', 'templates','404.html'));
+
+    logger.info("Request: " + req + "\nResponse: " + res);
+  });
+}

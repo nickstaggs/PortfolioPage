@@ -1,0 +1,15 @@
+<div class="row" ng-repeat='blogPost in blogPosts | orderBy:"datePosted" track by blogPost.id'>
+  <div class="col s12 m6 s4">
+    <a href="{{blogPost.url}}">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{blogPost.image}}" alt="">
+          <span class="card-title">{{blogPost.title}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{blogPost.summary}}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
