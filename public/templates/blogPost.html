@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 l8 offset-l2">
-    <img src="{{blogPost.image}}" alt="">
+    <img class="responsive-img" ng-src="{{post.image}}" alt="{{post.title}}">
+  </div>
+  <div class="blogPostTitle col s12 m10 offset-m1 l8 offset-l2">
+    <h2>{{post.title}}</h2>
   </div>
   <div class="col s12 m10 offset-m1 l8 offset-l2">
-    <h2>{{blogPost.title}}</h2>
-  </div>
-  <div class="col s12 m10 offset-m1 l8 offset-l2">
-    <div class="blogPost">
-      {{blogPost.body}}
+    <div class="blogPostBody">
+      <p>{{post.body}}</p>
     </div>
   </div>
-  <div class="col s12 m6">
-    <p>[{{blogPost.tags}}]</p>
+  <div class="col s12 m5 offset-m1 l4 offset-l2">
+    <p>[{{post.tags}}]</p>
   </div>
-  <div class="col s12 m6">
-    <p>{{blogPost.datePosted}}</p>
+  <div class="col s12 m5 l4 right-align">
+    <p>{{post.datePosted}}</p>
   </div>
 </div>

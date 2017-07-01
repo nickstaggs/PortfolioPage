@@ -2,8 +2,9 @@
 <html>
   <head>
 
-    <title>Nick Staggs' Blog and Portfolio Page</title>
+    <title>Nick Staggs</title>
 
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="height=device-height, initial-scale=1">
 
@@ -12,8 +13,12 @@
     <link href="css\Portfolio.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
 
-    <script type="text/javascript" src="dependencies\angular\angular.min.js"></script>
-    <script type="text/javascript" src="dependencies\angular-route\angular-route.min.js"></script>
+    <!--========================  SCRIPTS  ================================-->
+    <!-- <script type="text/javascript" src="dependencies\angular\angular.min.js"></script>
+    <script type="text/javascript" src="dependencies\angular-route\angular-route.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-route.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
@@ -24,6 +29,10 @@
     <script src="js/appRun.js"></script>
     <script src="js/controllers/MainController.js"></script>
     <script src="js/controllers/ResumeController.js"></script>
+    <script src="js/controllers/LoginController.js"></script>
+    <script src="js/controllers/WriteBlogPostController.js"></script>
+    <script src="js/controllers/BlogController.js"></script>
+    <script src="js/controllers/BlogPostController.js"></script>
 
   </head>
   <body ng-app="portfolioPage">
@@ -34,6 +43,7 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo center">Nick Staggs</a>
           <ul class="right hide-on-med-and-down">
+            <li><a href="/blog">Blog</a></li>
             <li><a href="/?scrollTo=Projects">Projects</a></li>
             <li><a href="/resume">Resume</a></li>
             <li><a href="/?scrollTo=Contact">Contact</a></li>
@@ -44,8 +54,6 @@
 
     <!--=====================  Dynamic View  ==============================-->
     <div ng-view></div>
-
-    <!--========================  SCRIPTS  ================================-->
 
   </body>
 </html>

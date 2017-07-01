@@ -1,38 +1,46 @@
 // set up ======================================================================
 var express = require('express');
-var favicon = require("serve-favicon");
-var app = express(); 						// create our app w/ express
-//app.use(favicon(__dirname + "\\public\\images\\favicon.ico"));
-//var mongoose = require('mongoose'); 				// mongoose for mongodb
-var port = process.env.PORT || 8080; 				// set the port
-//var database = require('./config/database'); 			// load the database config
+var app = express();
+var mongoose = require('mongoose');
+var port = process.env.PORT || 8080;
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var path = require('path');
 var fs = require('fs');
 var winston = require("winston");
+var session = require("express-session");
+var MongoStore = require("connect-mongo")(session);
+var https = require('https');
+var http = require('http');
+var config = require('./config.js');
+
 // configuration ===============================================================
 
-// set the static files location /public/img will be /img for users app.use(express.static('./public'));
+mongoose.connect(config.dbOptions.readUrl);
+// set the static files location
 app.use(express.static('./public'));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-// create a write stream (in append mode) C:\Users\Nick Staggs\Documents\PortfolioPage\public\images\favicon.ico
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 
 // setup the access logger
-app.use(morgan('combined', {stream: accessLogStream}))
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), {flags: 'a'});
+app.use(morgan('combined', {stream: accessLogStream}));
 
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({'extended': 'true'}));
-// parse application/json
 app.use(bodyParser.json());
-// parse application/vnd.api+json as json
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
-// override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('X-HTTP-Method-Override'));
+
+var dbReadWriteConnect = mongoose.createConnection(config.dbOptions.readWriteUrl);
+
+app.use(session({
+  secret: 'processsalt',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection : dbReadWriteConnect }),
+  cookie: {secure: false},
+  username: 'guest'
+}));
 
 
 /*******************************************************************************
@@ -47,20 +55,29 @@ const logger = new winston.Logger({
         humanReadableUnhandledException: true
       }),
       new winston.transports.File({
-        filename: 'app.log',
+        filename: path.join(__dirname, 'logs', 'app.log'),
         timestamp: true,
         handleExceptions: true,
         humanReadableUnhandledException: true
       })
     ]
   });
-
 /******************************************************************************/
+
 
 // routes ======================================================================
 require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
-logger.info("App listening on port " + port);
-logger.info(path.join(__dirname, 'public', 'images', 'favicon.ico'));
+var options = {
+  key: fs.readFileSync('key.key', 'utf-8'),
+  cert: fs.readFileSync('cert.crt', 'utf-8'),
+  passphrase:'poop1',
+  requestCert: false,
+  rejectUnauthorized: false
+};
+
+http.createServer(app).listen(config.connectionOptions.httpPort);
+https.createServer(options, app).listen(config.connectionOptions.httpsPort);
+
+logger.info("App listening on port " + config.connectionOptions.httpPort + " and " + config.connectionOptions.httpsPort);
