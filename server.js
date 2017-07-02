@@ -69,15 +69,15 @@ const logger = new winston.Logger({
 require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
-var options = {
-  key: fs.readFileSync('key.key', 'utf-8'),
-  cert: fs.readFileSync('cert.crt', 'utf-8'),
-  passphrase:'poop1',
-  requestCert: false,
-  rejectUnauthorized: false
-};
+// var options = {
+//   key: fs.readFileSync('key.key', 'utf-8'),
+//   cert: fs.readFileSync('cert.crt', 'utf-8'),
+//   passphrase:'poop1',
+//   requestCert: false,
+//   rejectUnauthorized: false
+// };
 
 http.createServer(app).listen(config.connectionOptions.httpPort);
-https.createServer(options, app).listen(config.connectionOptions.httpsPort);
+// https.createServer(options, app).listen(config.connectionOptions.httpsPort);
 
 logger.info("App listening on port " + config.connectionOptions.httpPort + " and " + config.connectionOptions.httpsPort);

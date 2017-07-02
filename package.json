@@ -26,6 +26,7 @@
   },
   "license":"SEE LICENSE IN license.txt",
   "scripts": {
-    "prestart": "start mongod --config ./mongod.cfg pause"
+    "prestart": "mongod --config ./mongod.cfg & sleep 5",
+    "start": "node server.js"
   }
 }

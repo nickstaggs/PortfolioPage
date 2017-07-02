@@ -29,7 +29,7 @@ var blogPostSchema = new Schema({
     type: String,
     default: null
   }
-}, {collection: 'BlogPosts',
+}, {collection: 'blogposts',
     toObject: {
       virtuals: true
     },

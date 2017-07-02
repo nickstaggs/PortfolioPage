@@ -68,18 +68,18 @@ module.exports = function (app) {
 
     logger.info("outside query");
 
-    var myIP = '::1'
+    var myIP = '::ffff:127.0.0.1'
     //if (req.ip === process.env.myIP) {
     if (req.ip === myIP) {
 
       User.findOne({ username: req.body.username }, 'username password', function(err, user) {
         logger.info("inside query");
         if(err) {
-          res.send(err);
+          res.send('err1');
         }
 
         if(user === null) {
-          res.send();
+          res.send('err2');
 
         }
 
@@ -89,7 +89,7 @@ module.exports = function (app) {
             logger.info(user.password);
             if (!isPassword) {
               // user name or password incorrect
-              res.send("err");
+              res.send("err3");
             }
 
             else {
@@ -101,7 +101,7 @@ module.exports = function (app) {
               mongoose.connection.on('close', function() {
 
                 mongoose.connect(config.dbOptions.readWriteUrl);
-
+                logger.info("Logged in");
                 req.session.username = user.username;
                 res.send({redirect: '/WriteBlogPost'});
               });
