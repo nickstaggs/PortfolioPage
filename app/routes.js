@@ -68,7 +68,7 @@ module.exports = function (app) {
 
     logger.info("outside query");
 
-    var myIP = '::ffff:127.0.0.1'
+    var myIP = '10.0.2.2'
     //if (req.ip === process.env.myIP) {
     if (req.ip === myIP) {
 
