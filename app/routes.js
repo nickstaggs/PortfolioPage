@@ -98,6 +98,8 @@ module.exports = function (app) {
               // set req.session.user to user
               mongoose.connection.close()
 
+              logger.info("passed close connection");
+
               mongoose.connection.on('close', function() {
 
                 mongoose.connect(config.dbOptions.readWriteUrl);

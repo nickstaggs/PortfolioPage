@@ -8,7 +8,7 @@ angular.module('LoginCtrl', []).controller('LoginController',
 
       $http.post('/user', credentials).then(function successCallBack(response) {
         console.log("successCallBack");
-        console.log(response.data.redirect);
+        console.log(response);
         $location.path(response.data.redirect);
       },
 
