@@ -102,7 +102,7 @@ module.exports = function (app) {
 
               mongoose.connection.on('close', function() {
 
-                mongoose.connect(config.dbOptions.readWriteUrl);
+                mongoose.connect(config.dbOptions.bloggerUrl);
                 logger.info("Logged in");
                 req.session.username = user.username;
                 res.send({redirect: '/WriteBlogPost'});
