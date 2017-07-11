@@ -6,6 +6,7 @@ var fs = require('fs');
 var config = require('../config');
 var path = require('path');
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 /*=====================  LOGGER  ======================*/
   const logger = new winston.Logger({
@@ -52,6 +53,7 @@ module.exports = function (app) {
         res.send();
       }
 
+      blogPost.datePosted = moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm:ss a');
       //logger.info(blogPost.title);
       res.json(blogPost);
     });
