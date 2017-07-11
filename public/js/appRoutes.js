@@ -31,7 +31,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 		})
 
 		.when('/WriteBlogPost', {
-			templateUrl: '/templates/WriteBlogPost.html',
+			templateUrl: '/templates/writeBlogPost.html',
 			controller: 'WriteBlogPostController'
 		})
 
