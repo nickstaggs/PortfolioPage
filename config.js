@@ -6,7 +6,7 @@ config.connectionOptions = {};
 
 config.dbOptions.readUser = process.env.readUser || 'read';
 config.dbOptions.readUserPass = process.env.readUserPass || 'password';
-config.dbOptions.readWriteUser = process.env.readWriteUser || 'readwrite';
+config.dbOptions.readWriteUser = process.env.readWriteUser || 'readWrite';
 config.dbOptions.readWriteUserPass = process.env.readWriteUserPass || 'password';
 config.dbOptions.readWriteUser = process.env.blogger || 'blogger';
 config.dbOptions.readWriteUserPass = process.env.bloggerUserPass || 'password';
