@@ -55,6 +55,7 @@ module.exports = function (app) {
 
       logger.info(blogPost.datePosted + " time");
       blogPost.datePosted = moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm:ss a');
+      logger.info(blogPost.datePosted + " time");
       //logger.info(blogPost.title);
       res.json(blogPost);
     });
