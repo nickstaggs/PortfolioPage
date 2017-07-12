@@ -48,4 +48,9 @@ blogPostSchema.virtual('summary').get(function() {
     return this.body.substring(0,50) + "...";
 });
 
+blogPostSchema.virtual('recentEditTime').get(function() {
+    var recentEdit = this.dateUpdated === null ? this.datePosted : this.dateUpdated;
+    return moment(recentEdit).format('MMMM Do YYYY, h:mm a');
+});
+
 module.exports = mongoose.model('BlogPost', blogPostSchema);
