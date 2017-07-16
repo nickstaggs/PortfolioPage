@@ -79,11 +79,11 @@ require('./app/routes.js')(app);
 // };
 
 // listen (start app with node server.js) ======================================
-// var options = {
-//  key: fs.readFileSync('privkey.pem'),
-//  cert: fs.readFileSync('fullchain.pem'),
-//  ca: fs.readFileSync('chain.pem')
-// };
+var options = {
+ key: fs.readFileSync(config.connectionOptions.privkey),
+ cert: fs.readFileSync(config.connectionOptions.fullchain),
+ ca: fs.readFileSync(config.connectionOptions.chain)
+};
 
 http.createServer(app).listen(config.connectionOptions.httpPort, '10.0.2.15');
 // https.createServer(options, app).listen(config.connectionOptions.httpsPort);
