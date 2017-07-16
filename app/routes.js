@@ -74,8 +74,8 @@ module.exports = function (app) {
     logger.info("outside query");
 
     var myIP = '10.0.2.2'
-    //if (req.ip === process.env.myIP) {
-    if (req.ip === myIP) {
+    if (req.ip === process.env.myIP) {
+    //if (req.ip === myIP) {
 
       User.findOne({ username: req.body.username }, 'username password', function(err, user) {
         logger.info("inside query");

@@ -85,7 +85,7 @@ var options = {
  ca: fs.readFileSync(config.connectionOptions.chain)
 };
 
-http.createServer(app).listen(config.connectionOptions.httpPort, '10.0.2.15');
-https.createServer(options, app).listen(config.connectionOptions.httpsPort, '10.0.2.15');
+http.createServer(app).listen(config.connectionOptions.httpPort);
+https.createServer(options, app).listen(config.connectionOptions.httpsPort);
 
 logger.info("App listening on port " + config.connectionOptions.httpPort + " and " + config.connectionOptions.httpsPort);
