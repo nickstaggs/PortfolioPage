@@ -86,6 +86,6 @@ var options = {
 };
 
 http.createServer(app).listen(config.connectionOptions.httpPort, '10.0.2.15');
-// https.createServer(options, app).listen(config.connectionOptions.httpsPort);
+https.createServer(options, app).listen(config.connectionOptions.httpsPort);
 
 logger.info("App listening on port " + config.connectionOptions.httpPort + " and " + config.connectionOptions.httpsPort);
