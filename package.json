@@ -28,6 +28,6 @@
   "license":"SEE LICENSE IN license.txt",
   "scripts": {
     "prestart": "mongod --config ./mongod.cfg & sleep 5",
-    "start": "node server.js"
+    "start": "nohup node server.js &"
   }
 }

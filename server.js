@@ -1,4 +1,5 @@
 // set up ======================================================================
+var dotenv = require('dotenv').config();
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -75,6 +76,13 @@ require('./app/routes.js')(app);
 //   passphrase:'poop1',
 //   requestCert: false,
 //   rejectUnauthorized: false
+// };
+
+// listen (start app with node server.js) ======================================
+// var options = {
+//  key: fs.readFileSync('privkey.pem'),
+//  cert: fs.readFileSync('fullchain.pem'),
+//  ca: fs.readFileSync('chain.pem')
 // };
 
 http.createServer(app).listen(config.connectionOptions.httpPort, '10.0.2.15');
