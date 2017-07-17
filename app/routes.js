@@ -73,52 +73,51 @@ module.exports = function (app) {
 
     logger.info("outside query");
 
-    var myIP = '10.0.2.2'
-    if (req.ip === process.env.myIP) {
+    //if (req.ip === process.env.myIP) {
     //if (req.ip === myIP) {
 
-      User.findOne({ username: req.body.username }, 'username password', function(err, user) {
-        logger.info("inside query");
-        if(err) {
-          res.send('err1');
-        }
+    User.findOne({ username: req.body.username }, 'username password', function(err, user) {
+      logger.info("inside query");
+      if(err) {
+        res.send('err1');
+      }
 
-        if(user === null) {
-          res.send('err2');
+      if(user === null) {
+        res.send('err2');
 
-        }
+      }
 
-        if (user) {
+      if (user) {
 
-          bcrypt.compare(req.body.password, user.password, function(err, isPassword) {
-            logger.info(user.password);
-            if (!isPassword) {
-              // user name or password incorrect
-              res.send("err3");
-            }
+        bcrypt.compare(req.body.password, user.password, function(err, isPassword) {
+          logger.info(user.password);
+          if (!isPassword) {
+            // user name or password incorrect
+            res.send("err3");
+          }
 
-            else {
+          else {
 
-              // send post blog page
-              // set req.session.user to user
-              mongoose.connection.close()
+            // send post blog page
+            // set req.session.user to user
+            mongoose.connection.close()
 
-              logger.info("passed close connection");
+            logger.info("passed close connection");
 
-              mongoose.connection.on('close', function() {
+            mongoose.connection.on('close', function() {
 
-                mongoose.connect(config.dbOptions.bloggerUrl);
-                logger.info("Logged in");
-                req.session.username = user.username;
-                res.send({redirect: '/WriteBlogPost'});
-              });
-            }
-          });
-        }
-      });
+              mongoose.connect(config.dbOptions.bloggerUrl);
+              logger.info("Logged in");
+              req.session.username = user.username;
+              res.send({redirect: '/WriteBlogPost'});
+            });
+          }
+        });
+      }
+    });
 
-      logger.info("past query");
-    }
+    logger.info("past query");
+
 
     else {
       // send 404 or something

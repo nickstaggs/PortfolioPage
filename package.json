@@ -1,8 +1,12 @@
 {
   "name": "PortfolioPage",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "A simple portfolio page to showcase my skills, and eventually a blog",
   "main": "server.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/nickstaggs/PortfolioPage.git"
+  },
   "author": {
     "name": "Nick Staggs",
     "email": "nick.c.staggs@gmail.com"

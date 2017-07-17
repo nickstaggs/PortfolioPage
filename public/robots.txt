@@ -4,3 +4,4 @@ Disallow: /dependencies/
 Disallow: /js/
 Disallow: /css/
 Disallow: /templates/
+Disallow: /login
