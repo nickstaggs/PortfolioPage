@@ -32,6 +32,8 @@
   },
   "license":"SEE LICENSE IN license.txt",
   "scripts": {
+    "prenoderestart": "kill $(ps aux | grep '[n]ode' | awk '{print $2}')",
+    "noderestart": "nohup node server.js &", 
     "prestart": "mongod --config ./mongod.cfg & sleep 5",
     "start": "nohup node server.js &"
   }
