@@ -114,14 +114,11 @@ module.exports = function (app) {
           }
         });
       }
+      
     });
 
     logger.info("past query");
 
-
-    else {
-      // send 404 or something
-    }
   });
 
   app.post('/WriteBlogPost', function(req, res) {
