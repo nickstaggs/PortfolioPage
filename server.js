@@ -35,7 +35,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 var dbReadWriteConnect = mongoose.createConnection(config.dbOptions.readWriteUrl);
 
 app.use(session({
-  secret: 'processsalt',
+  secret: process.env.secretSauce,
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection : dbReadWriteConnect }),
