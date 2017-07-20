@@ -62,7 +62,39 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/user', function(req, res) {
+  app.post('/blogPosts', function(req, res) {
+
+    User.findOne({ username: req.session.username }, 'username', function(err, user) {
+
+      if(err) {
+        logger.info('error in db lookup');
+        res.send(err);
+      }
+
+      if(user === null) {
+        logger.info("Unauthorized attempt to post blog by: " + req.session.username);
+        res.send(err);
+      }
+
+      else {
+        var post = new BlogPost({title: req.body.title,
+          body: req.body.body, tags: req.body.tags, image: req.body.image});
+
+        post.save(function(err) {
+          if(err) {
+            logger.info('DB did not create record')
+            res.send(false);
+          }
+
+          else {
+            res.send(true);
+          }
+        });
+      }
+    });
+  });
+
+  app.post('/users', function(req, res) {
 
     var session = req.session;
 
@@ -114,45 +146,12 @@ module.exports = function (app) {
           }
         });
       }
-      
+
     });
 
     logger.info("past query");
 
   });
-
-  app.post('/WriteBlogPost', function(req, res) {
-
-    User.findOne({ username: req.session.username }, 'username', function(err, user) {
-
-      if(err) {
-        logger.info('error in db lookup');
-        res.send(err);
-      }
-
-      if(user === null) {
-        logger.info("Unauthorized attempt to post blog by: " + req.session.username);
-        res.send(err);
-      }
-
-      else {
-        var post = new BlogPost({title: req.body.title,
-          body: req.body.body, tags: req.body.tags, image: req.body.image});
-
-        post.save(function(err) {
-          if(err) {
-            logger.info('DB did not create record')
-            res.send(false);
-          }
-
-          else {
-            res.send(true);
-          }
-        });
-      }
-    });
-  });
-
 
   app.get('/', function(req, res) {
 
@@ -161,7 +160,7 @@ module.exports = function (app) {
       session.user='guest';
     }
 
-    logger.info(req.session.guest);
+    logger.info(req.session.user);
 
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
   });

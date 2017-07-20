@@ -6,7 +6,7 @@ angular.module('WriteBlogPostCtrl',[]).controller('WriteBlogPostController',
       var post = { title:this.title, body:this.body, tags:this.tags, image:this.image};
       //console.log(post);
 
-      $http.post('/writeBlogPost', post).then(function successCallBack(response) {
+      $http.post('/blogPosts', post).then(function successCallBack(response) {
         //console.log("successCallBack");
       },
 
