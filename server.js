@@ -20,7 +20,7 @@ var config = require('./config.js');
 
 mongoose.connect(config.dbOptions.readUrl);
 // set the static files location
-app.use(express.static('./public'));
+app.use(express.static('./client'));
 
 // setup the access logger
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), {flags: 'a'});
@@ -67,7 +67,7 @@ const logger = new winston.Logger({
 
 
 // routes ======================================================================
-require('./app/routes.js')(app);
+require('./routes.js')(app);
 
 // listen (start app with node server.js) ======================================
 // var options = {

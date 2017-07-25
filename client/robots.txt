@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /images/
+Disallow: /dependencies/
+Disallow: /js/
+Disallow: /css/
+Disallow: /templates/
+Disallow: /login
