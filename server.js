@@ -14,7 +14,7 @@ var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 var https = require('https');
 var http = require('http');
-var config = require('./config.js');
+var config = require('config.js');
 
 // configuration ===============================================================
 
