@@ -1,10 +1,10 @@
-var BlogPost = require('./models/blogPost.js');
-var User = require('./models/user.js');
+var path = require('path');
+var BlogPost = require(path.join(__dirname, 'models', 'blogPost.js'));
+var User = require(path.join(__dirname, 'models', 'user.js'));
 var bcrypt = require('bcryptjs');
 var winston = require("winston");
 var fs = require('fs');
 var config = require('./config.js');
-var path = require('path');
 var mongoose = require('mongoose');
 var moment = require('moment');
 
