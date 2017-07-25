@@ -18,7 +18,7 @@ var moment = require('moment');
           humanReadableUnhandledException: true
         }),
         new winston.transports.File({
-          filename: path.join(__dirname, "..", 'logs', 'app.log'),
+          filename: path.join(__dirname, 'logs', 'app.log'),
           timestamp: true,
           handleExceptions: true,
           humanReadableUnhandledException: true
