@@ -1,4 +1,4 @@
-angular.module('WriteBlogPostCtrl',[]).controller('WriteBlogPostController',
+angular.module('writeBlogPostCtrl',[]).controller('WriteBlogPostController',
   ['$scope', '$http', function($scope, $http) {
 
     $scope.submit = function() {
