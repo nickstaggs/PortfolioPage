@@ -162,7 +162,7 @@ module.exports = function (app) {
 
     logger.info(req.session.user);
 
-    res.sendFile(path.join(__dirname, 'client', 'app', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
   });
 
 
@@ -174,6 +174,6 @@ module.exports = function (app) {
       session.user='guest';
     }
 
-    res.sendFile(path.join(__dirname, 'client', 'app', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
   });
 }
