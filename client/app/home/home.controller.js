@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', ['$scope','$location','$anchorScroll','$routeParams',
+angular.module('homeCtrl', []).controller('HomeController', ['$scope','$location','$anchorScroll','$routeParams',
 												                             function($scope, $location, $anchorScroll, $routeParams) {
 
 	 $('.parallax').parallax();

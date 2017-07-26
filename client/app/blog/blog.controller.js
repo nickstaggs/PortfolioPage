@@ -1,4 +1,4 @@
-angular.module('BlogCtrl', []).controller('BlogController',
+angular.module('blogCtrl', []).controller('BlogController',
   ['$scope', '$http', function($scope, $http) {
     var init = function() {
       $http.get('/blogposts').then(function successCallBack(response) {

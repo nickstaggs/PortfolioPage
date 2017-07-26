@@ -4,34 +4,34 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 	$routeProvider
 
 		.when('/', {
-			templateUrl: '/templates/home.html',
-			controller: 'MainController'
+			templateUrl: '/home/home.html',
+			controller: 'HomeController'
 		})
 
 		.when('/resume', {
-			templateUrl: '/templates/pdfRenderer.html',
+			templateUrl: '/resume/pdfRenderer.html',
 			controller: 'ResumeController'
 		})
 
 		.when('/login', {
-			templateUrl: '/templates/login.html',
+			templateUrl: '/login/login.html',
 			controller: 'LoginController'
 		})
 
 		// blog route
 		.when('/blog', {
-			templateUrl: '/templates/blog.html',
+			templateUrl: '/blog/blog.html',
 			controller: 'BlogController'
 		})
 
 		// blogPost route
 		.when('/blog/:blogId', {
-			templateUrl: '/templates/blogPost.html',
+			templateUrl: '/blogPost/blogPost.html',
 			controller: 'BlogPostController'
 		})
 
 		.when('/WriteBlogPost', {
-			templateUrl: '/templates/writeBlogPost.html',
+			templateUrl: '/writeBlogPost/writeBlogPost.html',
 			controller: 'WriteBlogPostController'
 		})
 

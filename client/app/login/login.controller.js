@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('LoginController',
+angular.module('loginCtrl', []).controller('LoginController',
   ['$scope','$http','$location', function($scope, $http, $location) {
 
     $scope.submit = function() {

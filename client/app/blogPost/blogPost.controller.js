@@ -1,4 +1,4 @@
-angular.module('BlogPostCtrl',[]).controller('BlogPostController',
+angular.module('blogPostCtrl',[]).controller('BlogPostController',
   ['$scope','$http', '$routeParams', function($scope, $http, $routeParams) {
     var initPost = function() {
       //console.log('/blogposts/' + $routeParams.blogId);
