@@ -1,9 +1,5 @@
 (function() {
   'use strict';
 
-  angular
-    .module('app.blog', [
-      'BlogService',
-      'BlogController'
-    ]);
+  angular.module('app.blog', []);
 })();
