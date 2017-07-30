@@ -1,15 +1,26 @@
-angular.module('blogCtrl', []).controller('BlogController',
-  ['$scope', '$http', function($scope, $http) {
-    var init = function() {
-      $http.get('/blogposts').then(function successCallBack(response) {
-        //console.log(response);
-        $scope.blogPosts = response.data;
-      },
-      function errorCallBack(response) {
-        //console.log(response);
-        //console.log("error");
-      });
-    };
+(function() {
+  'use strict';
 
-    init();
-  }]);
+  angular
+    .module('app.blog', [])
+    .controller('BlogController', BlogService);
+
+    BlogController.$inject = ['$scope', 'BlogService'];
+
+    function BlogController($scope, BlogService) {
+
+      var vm = this;
+
+      init();
+
+      function init() {
+        vm.blogPosts = getBlogPosts();
+      };
+
+      function getBlogPosts() {
+        return BlogService.getBlogPosts().then(function(data) {
+          return data;
+        });
+      }
+    }
+})();

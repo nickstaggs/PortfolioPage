@@ -6,7 +6,7 @@ angular.module('loginCtrl', []).controller('LoginController',
       var credentials = {username:this.username, password:this.password};
       //console.log(credentials);
 
-      $http.post('/users', credentials).then(function successCallBack(response) {
+      $http.post('api/users', credentials).then(function successCallBack(response) {
         //console.log("successCallBack");
         //console.log(response);
         $location.path(response.data.redirect);

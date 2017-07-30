@@ -29,7 +29,7 @@ var moment = require('moment');
 
 module.exports = function (app) {
 
-  app.get('/blogposts', function(req, res) {
+  app.get('api/blogposts', function(req, res) {
     BlogPost.find(function(err, blogPosts) {
 
       if (err) {
@@ -40,7 +40,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/blogPosts/:blogpostId', function(req, res) {
+  app.get('api/blogPosts/:blogpostId', function(req, res) {
 
     BlogPost.findOne({'_id': req.params.blogpostId }, function(err, blogPost) {
       logger.info(req.params.blogpostId);
@@ -62,7 +62,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/blogPosts', function(req, res) {
+  app.post('api/blogPosts', function(req, res) {
 
     User.findOne({ username: req.session.username }, 'username', function(err, user) {
 
@@ -94,7 +94,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/users', function(req, res) {
+  app.post('api/users', function(req, res) {
 
     var session = req.session;
 
