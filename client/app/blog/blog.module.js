@@ -3,6 +3,7 @@
 
   angular
     .module('app.blog', [
-      'BlogService', 'BlogController'
+      'BlogService',
+      'BlogController'
     ]);
 })();

@@ -1,3 +1,11 @@
-angular.module('portfolioPage',
-  ['ngRoute', 'appRoutes', 'homeCtrl','appRun', 'resumeCtrl', 'loginCtrl',
-  'writeBlogPostCtrl', 'app.blog', 'blogPostCtrl']);
+angular.module('portfolioPage', [
+  'ngRoute',
+  'appRoutes',
+  'homeCtrl',
+  'appRun',
+  'resumeCtrl',
+  'loginCtrl',
+  'writeBlogPostCtrl',
+  'app.blog',
+  'blogPostCtrl'
+]);

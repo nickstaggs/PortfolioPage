@@ -8,6 +8,7 @@
     BlogService.$inject = ['$http'];
 
     function BlogService($http) {
+
       return {
         getBlogPosts: getBlogPosts
       };
