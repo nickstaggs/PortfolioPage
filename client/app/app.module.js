@@ -1,3 +1,3 @@
 angular.module('portfolioPage',
   ['ngRoute', 'appRoutes', 'homeCtrl','appRun', 'resumeCtrl', 'loginCtrl',
-  'writeBlogPostCtrl', 'blogCtrl', 'blogPostCtrl']);
+  'writeBlogPostCtrl', 'app.blog', 'blogPostCtrl']);
