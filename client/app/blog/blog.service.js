@@ -3,16 +3,14 @@
 
   angular
     .module('app.blog')
-    .service('BlogService', BlogService);
+    .factory('BlogService', BlogService);
 
     BlogService.$inject = ['$http'];
 
     function BlogService($http) {
-      var service = {
+      return {
         getBlogPosts: getBlogPosts
       };
-
-      return service;
 
       function getBlogPosts() {
         return $http.get('/api/blogPosts')
