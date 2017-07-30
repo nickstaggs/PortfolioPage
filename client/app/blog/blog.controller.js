@@ -3,7 +3,7 @@
 
   angular
     .module('app.blog', [])
-    .controller('BlogController', BlogService);
+    .controller('BlogController', BlogController);
 
     BlogController.$inject = ['$scope', 'BlogService'];
 
