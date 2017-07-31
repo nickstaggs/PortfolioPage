@@ -14,6 +14,7 @@
       init();
 
       function init() {
+        console.log("running init");
         vm.blogPosts = getBlogPosts();
         console.log(vm.blogPosts);
       };
