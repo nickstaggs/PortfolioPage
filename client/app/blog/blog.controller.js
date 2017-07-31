@@ -15,6 +15,7 @@
 
       function init() {
         vm.blogPosts = getBlogPosts();
+        console.log(vm.blogPosts);
       };
 
       function getBlogPosts() {
