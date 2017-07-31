@@ -36,6 +36,7 @@ module.exports = function (app) {
         res.send(err);
       }
 
+      logger.info("sending blogPosts");
       res.json(blogPosts);
     });
   });
