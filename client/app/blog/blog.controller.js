@@ -15,15 +15,16 @@
 
       function init() {
         console.log("running init");
-        vm.blogPosts = getBlogPosts();
+        getBlogPosts().then();
         console.log(vm.blogPosts);
       };
 
       function getBlogPosts() {
-        return BlogService.getBlogPosts().then(function(data) {
-          vm.blogPosts = data;
-          return vm.blogPosts;
-        });
+        return BlogService.getBlogPosts()
+          .then(function(data) {
+            vm.blogPosts = data;
+            return vm.blogPosts;
+          });
       }
     }
 })();
