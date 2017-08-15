@@ -16,7 +16,7 @@ pipeline {
 
         sh 'npm install'
         sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/data'
-        sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/www.nickstaggs ~/PortfolioPage/'
+        sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/www.nickstaggs.com ~/PortfolioPage/'
 
         configFileProvider([configFile(fileId: 'aa569752-3752-44e7-b5c5-0cc5fd3721db', variable: 'DOTENV')]) {
             sh 'echo $DOTENV > .env'
