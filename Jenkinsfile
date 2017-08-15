@@ -11,7 +11,7 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'mkdir logs'
+        sh 'mkdir -p logs'
         sh 'npm install'
         sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/workspace/data'
         sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:/etc/letsencrypt/live/www.nickstaggs.com ./'
