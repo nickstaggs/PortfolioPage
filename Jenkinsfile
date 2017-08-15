@@ -1,33 +1,40 @@
 pipeline {
-  agents any
+  agent any
 
   stages {
 
     stage('checkout') {
-      sh 'cd ~'
-      checkout scm
+      steps {
+        sh 'cd ~'
+        checkout scm
+      }
     }
 
     stage('build') {
-      sh 'cd ~'
+      steps {
+        sh 'cd ~'
 
-      sh 'npm install'
-      sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/.env ~/PortfolioPage/'
-      sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/data'
-      sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/www.nickstaggs ~/PortfolioPage/'
+        sh 'npm install'
+        sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/.env ~/PortfolioPage/'
+        sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/data'
+        sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/www.nickstaggs ~/PortfolioPage/'
 
-      configFileProvider(
-        [configFile(fileId: 'aa569752-3752-44e7-b5c5-0cc5fd3721db', variable: 'DOTENV')]) {
-          sh 'echo $DOTENV > .env'
+        configFileProvider[configFile(fileId: 'aa569752-3752-44e7-b5c5-0cc5fd3721db', variable: 'DOTENV')]) {
+            sh 'echo $DOTENV > .env'
         }
+      }
     }
 
     stage('test') {
-      sh 'echo This is where testing would be'
+      steps {
+        sh 'echo This is where testing would be'
+      }
     }
 
     stage('deploy') {
-      sh 'npm start'
+      steps {
+        sh 'npm start'
+      }
     }
   }
 }
