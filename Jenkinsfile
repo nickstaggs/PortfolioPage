@@ -15,7 +15,6 @@ pipeline {
         sh 'cd ~'
 
         sh 'npm install'
-        sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/.env ~/PortfolioPage/'
         sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/data'
         sh 'scp -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/PortfolioPage/www.nickstaggs ~/PortfolioPage/'
 
