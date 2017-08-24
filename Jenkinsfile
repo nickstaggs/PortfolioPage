@@ -5,8 +5,8 @@ pipeline {
 
     stage('stop current processes') {
       steps {
-        sh "kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
-        sh "kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
+        sh "sudo kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
+        sh "sudo kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
       }
     }
 
@@ -40,7 +40,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'npm start'
+        sh 'sudo npm start'
       }
     }
   }
