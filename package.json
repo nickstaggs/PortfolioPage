@@ -1,7 +1,7 @@
 {
   "name": "PortfolioPage",
   "version": "1.0.0",
-  "description": "A simple portfolio page to showcase my skills, and eventually a blog",
+  "description": "A simple portfolio page to showcase my skills, and a blog",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -39,9 +39,13 @@
     "start": "nohup node server.js &"
   },
   "devDependencies": {
+    "jasmine": "^2.8.0",
+    "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.0.1",
     "karma-ie-launcher": "^1.0.0",
-    "karma-jasmine": "^1.1.0"
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "sinon": "^3.2.1"
   }
 }
