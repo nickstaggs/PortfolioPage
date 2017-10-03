@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine', 'sinon', 'browserify'],
 
 
     // list of files / patterns to load in the browser
@@ -41,7 +41,7 @@ module.exports = function(config) {
        'models/*.js': [ 'browserify' ],
     },
 
-    plugins: ['karma-browserify', 'karma-jasmine', 'karma-chrome-launcher'],
+    plugins: ['karma-browserify', 'karma-jasmine', 'karma-chrome-launcher', 'karma-sinon'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

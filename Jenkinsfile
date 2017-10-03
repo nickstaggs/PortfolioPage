@@ -5,8 +5,10 @@ pipeline {
 
     stage('stop current processes') {
       steps {
-        sh "sudo kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
-        sh "sudo kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
+
+        //If node and mongo are not already running this will throw an error
+        // sh "sudo kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
+        // sh "sudo kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
       }
     }
 
