@@ -39,13 +39,17 @@
     "start": "nohup node server.js &"
   },
   "devDependencies": {
+    "angular-mocks": "^1.6.6",
+    "browserify": "^14.4.0",
     "jasmine": "^2.8.0",
     "karma": "^1.7.1",
+    "karma-browserify": "^5.1.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.0.1",
     "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
-    "sinon": "^3.2.1"
+    "sinon": "^3.2.1",
+    "watchify": "^3.9.0"
   }
 }

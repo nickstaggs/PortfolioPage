@@ -5,13 +5,15 @@ describe('BlogController', function() {
   var blogController;
   var blogServiceMock;
   var $rootScope;
-  module('app.blog');
+  angular.mock.module('app.blog');
 
   beforeEach(inject(function($rootScope, $controller) {
-    scope = $rootScope.$new();
-    ctrl = $controller('myController', {
+    var scope = $rootScope.$new();
+    var ctrl = $controller('BlogController', {
        $scope: scope
     });
+
+
 
     var expectedCollection = [
         { id: 1, name: 'Gwen' },
