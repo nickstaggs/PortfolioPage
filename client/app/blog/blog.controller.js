@@ -9,7 +9,9 @@
 
     function BlogController($scope, BlogService) {
       var vm = this;
+
       vm.blogPosts = [];
+      vm.getBlogPosts = getBlogPosts;
 
       init();
 

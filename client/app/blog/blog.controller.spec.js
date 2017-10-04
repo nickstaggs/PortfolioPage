@@ -42,7 +42,7 @@ describe('BlogController', function() {
     // server.respond();
     // server.restore();
     //
-    // expect(vm.blogPosts.toJSON()).to.eql(expectedCollection);
+    // expect(vm.blogPosts).to.eql(expectedCollection);
 
     expect(vm.blogPosts).toBeDefined();
   });
