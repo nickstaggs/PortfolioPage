@@ -3,14 +3,14 @@ pipeline {
 
   stages {
 
-    stage('stop current processes') {
-      steps {
-
-        //If node and mongo are not already running this will throw an error
-        sh "sudo kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
-        sh "sudo kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
-      }
-    }
+    // stage('stop current processes') {
+    //   steps {
+    //
+    //     //If node and mongo are not already running this will throw an error
+    //     sh "sudo kill \$(ps aux | grep '[n]ode' | awk '{print \$2}')"
+    //     sh "sudo kill \$(ps aux | grep '[m]ongod' | awk '{print \$2}')"
+    //   }
+    // }
 
     stage('checkout') {
       steps {
@@ -23,6 +23,7 @@ pipeline {
         sh 'mkdir -p logs'
         sh 'npm install'
 
+        sh 'npm install karma-cli -g'
         // If Environment does not have db, probably have to run repair operation after
         // sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/workspace/data'
 
