@@ -1,6 +1,5 @@
-'use strict';
-
 describe('BlogController', function() {
+  'use strict';
 
   beforeEach(angular.mock.module('app.blog'));
 
