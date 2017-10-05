@@ -36,7 +36,7 @@ pipeline {
 
     stage('test') {
       steps {
-        sh 'echo This is where testing would be'
+        sh 'karma start'
       }
     }
 

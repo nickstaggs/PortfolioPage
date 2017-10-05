@@ -1,44 +1,39 @@
+'use strict';
+
 describe('BlogController', function() {
-  'use strict';
+  var BlogController, vm, scope, BlogService;
 
   beforeEach(angular.mock.module('app.blog'));
 
-  var BlogController, vm, scope;
-
-  beforeEach(inject(function ($rootScope, $controller) {
+  beforeEach(inject(function ($rootScope, $controller, $q) {
     scope = $rootScope.$new();
 
-    vm = $controller('BlogController', {'$scope': scope});
+    BlogService = {
+      getBlogPosts: function() {}
+    };
+
+    spyOn(BlogService, 'getBlogPosts').and.callFake(function() {
+        var deferred = $q.defer();
+        deferred.resolve('foo');
+        return deferred.promise;
+    });
+
+    vm = $controller('BlogController', {'$scope': scope, BlogService: BlogService});
   }));
 
-  it('should exist', function() {
+  it('Should exist', function() {
     expect(vm).toBeDefined();
   });
 
+  it('Should call BlogService', function() {
+    vm.getBlogPosts();
 
+    expect(BlogService.getBlogPosts).toHaveBeenCalled();
+  });
 
-  it('Sets controller variable to object containing all blogPosts', function() {
-
-    var expectedCollection = [
-        { id: 1, name: 'Gwen' },
-        { id: 2, name: 'John' }
-      ];
-
-    const server = sinon.fakeServer.create();
-
-    server.respondWith('GET', '/api/blogPosts', [
-      200,
-      { 'Content-Type': 'application/json' },
-      '[{ "id": 1, "name": "Gwen" },  { "id": 2, "name": "John" }]'
-    ]);
-
-    // vm.getBlogPosts();
-    //
-    // server.respond();
-    // server.restore();
-    //
-    // expect(vm.blogPosts).to.eql(expectedCollection);
-
-    expect(vm.blogPosts).toBeDefined();
+  it('Should set blogPosts returned by the service to vm.blogPosts', function() {
+    vm.getBlogPosts();
+    scope.$apply();
+    expect(vm.blogPosts).toEqual('foo');
   });
 });
