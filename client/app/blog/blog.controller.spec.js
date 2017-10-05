@@ -12,10 +12,6 @@ describe('BlogController', function() {
     vm = $controller('BlogController', {'$scope': scope});
   }));
 
-  // beforeEach(inject(function(_BlogController_) {
-  //     BlogController = _BlogController_;
-  //   }));
-
   it('should exist', function() {
     expect(vm).toBeDefined();
   });
