@@ -23,7 +23,7 @@ pipeline {
         sh 'mkdir -p logs'
         sh 'npm install'
 
-        sh 'npm install karma-cli -g'
+        sh 'sudo npm install karma-cli -g'
         // If Environment does not have db, probably have to run repair operation after
         // sh 'scp -r -i ~/keys/aws.pem ubuntu@ec2-34-198-171-193.compute-1.amazonaws.com:~/data/db ~/workspace/data'
 
