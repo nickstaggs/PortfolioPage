@@ -8,26 +8,35 @@
     BlogService.$inject = ['$http'];
 
     function BlogService($http) {
+      let baseUrl = '/api/blogPosts';
 
       return {
-        getBlogPosts: getBlogPosts
+        getBlogPosts: getBlogPosts,
+        getBlogPost: getBlogPost
       };
 
       function getBlogPosts() {
-        return $http.get('/api/blogPosts')
+        return $http.get(baseUrl)
           .then(successCallBack)
           .catch(errorCallBack);
-
-        function successCallBack(response) {
-          console.log("success");
-          console.log(response);
-          return response.data;
-        }
-
-        function errorCallBack(response) {
-          console.log("error");
-          console.log(response);
-        }
       }
-    }
+
+      function getBlogPost(blogPostSlug) {
+        return $http.get(baseUrl + "/" + blogPostSlug)
+          .then(successCallBack)
+          .catch(errorCallBack);
+      }
+
+      function successCallBack(response) {
+        console.log("success");
+        console.log(response);
+        return response.data;
+      }
+
+      function errorCallBack(response) {
+        console.log("error");
+        console.log(response);
+      }
+
+  }
 })();

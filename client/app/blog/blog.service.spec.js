@@ -34,4 +34,22 @@ describe('BlogService', function() {
 
     expect(result).toEqual(returnData);
   });
+
+  it('should get a blog post', function() {
+    let returnData = "data";
+    let urlSlug = "data";
+
+    httpBackend.expectGET("/api/blogPosts/" + urlSlug).respond(returnData);
+
+    let returnedPromise = BlogService.getBlogPost(urlSlug);
+
+    let result;
+    returnedPromise.then(function(response) {
+      result = response;
+    });
+
+    httpBackend.flush();
+
+    expect(result).toEqual(returnData);
+  });
 });
