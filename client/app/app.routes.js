@@ -26,7 +26,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 
 		// blogPost route
 		.when('/blog/:blogId', {
-			templateUrl: '/app/blogPost/blogPost.html',
+			templateUrl: '/app/blog/blogPost/blogPost.html',
 			controller: 'BlogPostController'
 		})
 

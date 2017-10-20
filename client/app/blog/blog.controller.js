@@ -13,9 +13,9 @@
       vm.blogPosts = [];
       vm.getBlogPosts = getBlogPosts;
 
-      init();
+      initBlog();
 
-      function init() {
+      function initBlog() {
         console.log("running init");
         getBlogPosts().then();
         console.log(vm.blogPosts);

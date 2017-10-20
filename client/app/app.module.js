@@ -7,5 +7,4 @@ angular.module('portfolioPage', [
   'loginCtrl',
   'writeBlogPostCtrl',
   'app.blog',
-  'blogPostCtrl'
 ]);
