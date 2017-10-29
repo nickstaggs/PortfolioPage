@@ -1,6 +1,15 @@
-angular.module('homeCtrl', []).controller('HomeController', ['$scope','$location','$anchorScroll','$routeParams',
-												                             function($scope, $location, $anchorScroll, $routeParams) {
+(function() {
+	'use strict';
 
-	 $('.parallax').parallax();
-	 $('.slider').slider();
-}]);
+	angular
+		.module('homeCtrl')
+		.controller('HomeController', HomeController);
+
+		HomeController.$inject = ['$scope','$location','$anchorScroll','$routeParams'];
+
+		function HomeController($scope, $location, $anchorScroll, $routeParams) {
+
+			 $('.parallax').parallax();
+			 $('.slider').slider();
+		 }
+})();
