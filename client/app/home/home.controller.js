@@ -2,14 +2,14 @@
 	'use strict';
 
 	angular
-		.module('homeCtrl')
+		.module('app.home')
 		.controller('HomeController', HomeController);
 
 		HomeController.$inject = ['$scope','$location','$anchorScroll','$routeParams'];
 
 		function HomeController($scope, $location, $anchorScroll, $routeParams) {
 
-			 $('.parallax').parallax();
-			 $('.slider').slider();
-		 }
+			$('.parallax').parallax();
+			$('.slider').slider();
+		}
 })();

@@ -1,7 +1,7 @@
 angular.module('portfolioPage', [
   'ngRoute',
   'appRoutes',
-  'homeCtrl',
+  'app.home',
   'appRun',
   'resumeCtrl',
   'loginCtrl',

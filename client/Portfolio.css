@@ -19,6 +19,7 @@
 
 .parallax-container {
   height: 90vh !important;
+  z-index: 0;
 }
 
 .logo {
@@ -55,7 +56,7 @@ nav {
 
 .parallax p {
   color:white;
-  z-index: auto;
+  z-index: 1;
   text-align: center;
 
 }
@@ -86,4 +87,8 @@ nav ul a:hover {
 .blogPostBody {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.about-text-box a {
+  z-index: 10;
 }
