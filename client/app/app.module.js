@@ -7,4 +7,6 @@ angular.module('portfolioPage', [
   'loginCtrl',
   'writeBlogPostCtrl',
   'app.blog',
+  'btford.markdown',
+  'hljs'
 ]);

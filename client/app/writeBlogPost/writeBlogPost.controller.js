@@ -3,10 +3,10 @@ angular.module('writeBlogPostCtrl',[]).controller('WriteBlogPostController',
 
     $scope.submit = function() {
 
-      var post = { title:this.title, body:this.body, tags:this.tags, image:this.image};
+      var post = { title:this.title, fileName:this.fileName, url:this.url, summary:this.summary, tags:this.tags};
       //console.log(post);
 
-      $http.post('/blogPosts', post).then(function successCallBack(response) {
+      $http.post('api/blogPosts', post).then(function successCallBack(response) {
         //console.log("successCallBack");
       },
 

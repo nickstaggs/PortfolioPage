@@ -20,14 +20,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 
 		// blog route
 		.when('/blog', {
-			templateUrl: '/app/blog/blog.html',
-			controller: 'BlogController'
+			templateUrl: '/app/blog/blog.html'
 		})
 
 		// blogPost route
-		.when('/blog/:blogId', {
-			templateUrl: '/app/blog/blogPost/blogPost.html',
-			controller: 'BlogPostController'
+		.when('/blog/:blogUrl', {
+			templateUrl: '/app/blog/blogPost/blogPost.html'
 		})
 
 		.when('/WriteBlogPost', {
@@ -36,7 +34,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 		})
 
 		.otherwise({
-			templateUrl: '/templates/404.html',
+			templateUrl: '/app/error/404.html',
 			controller: 'ErrorController'
 		});
 

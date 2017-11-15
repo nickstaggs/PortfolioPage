@@ -41,25 +41,35 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/api/blogPosts/:blogpostId', function(req, res) {
+  app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
 
-    BlogPost.findOne({'_id': req.params.blogpostId }, function(err, blogPost) {
-      logger.info(req.params.blogpostId);
+    BlogPost.findOne({'url': req.params.blogpostUrl }, function(err, blogPost) {
+      logger.info(req.params.blogpostUrl);
       if(err) {
+
         logger.info("error");
         res.send(err);
-      }
 
-      if (blogPost === null) {
+      } else if (blogPost === null) {
+
         res.send();
-      }
 
-      logger.info(blogPost.datePosted + " time");
-      blogPost.datePosted = moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm a');
-      logger.info(moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm a'));
-      logger.info(blogPost.recentEditTime);
-      //logger.info(blogPost.title);
-      res.json(blogPost);
+      } else {
+
+        let post = {};
+
+        post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
+        post.url = blogPost.url;
+        post.fileName = blogPost.fileName;
+        post.summary = blogPost.summary;
+        post.title = blogPost.title;
+        post.tags = blogPost.tags;
+
+        logger.info(blogPost.datePosted + " time");
+
+        logger.info(moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm a'));
+        res.json(post);
+      }
     });
   });
 
@@ -68,26 +78,26 @@ module.exports = function (app) {
     User.findOne({ username: req.session.username }, 'username', function(err, user) {
 
       if(err) {
-        logger.info('error in db lookup');
+        logger.info('error in db lookup for: ' + req.session.username);
+        logger.info(err)
         res.send(err);
       }
 
-      if(user === null) {
+      else if(user === null) {
         logger.info("Unauthorized attempt to post blog by: " + req.session.username);
         res.send(err);
       }
 
       else {
         var post = new BlogPost({title: req.body.title,
-          body: req.body.body, tags: req.body.tags, image: req.body.image});
+          fileName: req.body.fileName, url: req.body.url, summary:req.body.summary, tags: req.body.tags});
 
         post.save(function(err) {
           if(err) {
-            logger.info('DB did not create record')
+            logger.info('DB did not create record');
+            logger.info(err);
             res.send(false);
-          }
-
-          else {
+          } else {
             res.send(true);
           }
         });

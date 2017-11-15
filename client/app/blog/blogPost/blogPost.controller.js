@@ -15,14 +15,16 @@
 
       initPost();
 
+
       function initPost() {
-        getBlogPost().then();
+        getBlogPost();
       };
 
       function getBlogPost() {
-        return BlogService.getBlogPost($routeParams.blogId)
+        return BlogService.getBlogPost($routeParams.blogUrl)
           .then(function(data) {
             vm.blogPost = data;
+            vm.blogPost.fileName = '/documents/' + vm.blogPost.fileName;
             return vm.blogPost;
           });
       }

@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-markdown-directive",
+        "scope": null,
+        "escapedName": "angular-markdown-directive",
+        "name": "angular-markdown-directive",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/nick/Documents/PortfolioPage"
+    ]
+  ],
+  "_from": "angular-markdown-directive@latest",
+  "_id": "angular-markdown-directive@0.3.1",
+  "_inCache": true,
+  "_location": "/angular-markdown-directive",
+  "_nodeVersion": "0.10.32",
+  "_npmUser": {
+    "name": "btford",
+    "email": "briantford@gmail.com"
+  },
+  "_npmVersion": "2.0.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular-markdown-directive",
+    "scope": null,
+    "escapedName": "angular-markdown-directive",
+    "name": "angular-markdown-directive",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-markdown-directive/-/angular-markdown-directive-0.3.1.tgz",
+  "_shasum": "b30ad0127e129dff747ac65c41dbf32954b5fe24",
+  "_shrinkwrap": null,
+  "_spec": "angular-markdown-directive",
+  "_where": "/home/nick/Documents/PortfolioPage",
+  "author": {
+    "name": "Brian Ford"
+  },
+  "bugs": {
+    "url": "https://github.com/btford/angular-markdown-directive/issues"
+  },
+  "dependencies": {},
+  "description": "simple AngularJS markdown directive with showdown",
+  "devDependencies": {
+    "karma": "^0.12.9",
+    "karma-chrome-launcher": "^0.1.3",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "^0.1.5"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "b30ad0127e129dff747ac65c41dbf32954b5fe24",
+    "tarball": "https://registry.npmjs.org/angular-markdown-directive/-/angular-markdown-directive-0.3.1.tgz"
+  },
+  "gitHead": "0f49e85166a99811295ea33f127e63715d765b3e",
+  "homepage": "https://github.com/btford/angular-markdown-directive",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "markdown",
+    "directive"
+  ],
+  "license": "MIT",
+  "main": "markdown.js",
+  "maintainers": [
+    {
+      "name": "btford",
+      "email": "briantford@gmail.com"
+    }
+  ],
+  "name": "angular-markdown-directive",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/btford/angular-markdown-directive.git"
+  },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start --browsers Firefox --single-run"
+  },
+  "version": "0.3.1"
+}

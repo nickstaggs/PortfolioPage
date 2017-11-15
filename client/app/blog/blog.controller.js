@@ -27,6 +27,6 @@
             vm.blogPosts = data;
             return vm.blogPosts;
           });
-      }
+      };
     }
 })();

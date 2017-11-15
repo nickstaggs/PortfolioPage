@@ -1,19 +1,14 @@
-<div class="row">
-  <div class="col s12 m8 offset-m2 l6 offset-l3">
-    <img class="responsive-img" ng-src="{{vm.blogPost.image}}" alt="{{vm.blogPost.title}}">
-  </div>
+<div class="row" ng-controller="BlogPostController as vm">
   <div class="blogPostTitle col s12 m8 offset-m2 l6 offset-l3">
     <h2>{{vm.blogPost.title}}</h2>
   </div>
   <div class="col s12 m8 offset-m2 l6 offset-l3">
-    <div class="blogPostBody">
-      <p>{{vm.blogPost.body}}</p>
-    </div>
+    <div class="blogPostBody" hljs hljs-no-escape btf-markdown ng-include="vm.blogPost.fileName"></div>
   </div>
   <div class="col s12 m4 offset-m2 l3 offset-l3">
     <p>[{{vm.blogPost.tags}}]</p>
   </div>
   <div class="col s12 m4 l3 right-align">
-    <p>{{vm.blogPost.recentEditTime}}</p>
+    <p>{{vm.blogPost.date}}</p>
   </div>
 </div>
