@@ -1,3 +1,11 @@
-angular.module('resumeCtrl', []).controller('ResumeController', function() {
-  PDFObject.embed("/documents/Nick_Staggs_Resume.pdf", "#pdfRenderer");
-})
+(function() {
+  'use strict';
+
+  angular
+    .module('app.resume')
+    .controller('ResumeController', ResumeController);
+
+    function ResumeController() {
+      PDFObject.embed("/documents/Nick_Staggs_Resume.pdf", "#pdfRenderer");
+    }
+})();

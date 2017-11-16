@@ -16,9 +16,7 @@
       initBlog();
 
       function initBlog() {
-        console.log("running init");
-        getBlogPosts().then();
-        console.log(vm.blogPosts);
+        getBlogPosts();
       };
 
       function getBlogPosts() {

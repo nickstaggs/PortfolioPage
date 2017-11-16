@@ -12,7 +12,8 @@
 
       return {
         getBlogPosts: getBlogPosts,
-        getBlogPost: getBlogPost
+        getBlogPost: getBlogPost,
+        postBlogPost: postBlogPost
       };
 
       function getBlogPosts() {
@@ -23,6 +24,12 @@
 
       function getBlogPost(blogPostSlug) {
         return $http.get(baseUrl + "/" + blogPostSlug)
+          .then(successCallBack)
+          .catch(errorCallBack);
+      }
+
+      function postBlogPost(post) {
+        return $http.post(baseUrl, post)
           .then(successCallBack)
           .catch(errorCallBack);
       }

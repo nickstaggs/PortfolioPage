@@ -4,13 +4,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 	$routeProvider
 
 		.when('/', {
-			templateUrl: '/app/home/home.html',
-			controller: 'HomeController'
+			templateUrl: '/app/home/home.html'
 		})
 
 		.when('/resume', {
-			templateUrl: '/app/resume/pdfRenderer.html',
-			controller: 'ResumeController'
+			templateUrl: '/app/resume/pdfRenderer.html'
 		})
 
 		.when('/login', {
@@ -29,8 +27,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 		})
 
 		.when('/WriteBlogPost', {
-			templateUrl: '/app/writeBlogPost/writeBlogPost.html',
-			controller: 'WriteBlogPostController'
+			templateUrl: '/app/blog/writeBlogPost/writeBlogPost.html'
 		})
 
 		.otherwise({

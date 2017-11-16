@@ -1,12 +1,11 @@
 angular.module('portfolioPage', [
   'ngRoute',
   'appRoutes',
+  'app.blog',
   'app.home',
   'appRun',
-  'resumeCtrl',
+  'app.resume',
   'loginCtrl',
-  'writeBlogPostCtrl',
-  'app.blog',
   'btford.markdown',
   'hljs'
 ]);
