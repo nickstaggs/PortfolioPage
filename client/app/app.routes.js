@@ -1,41 +1,48 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
-																function($routeProvider, $locationProvider) {
+(function() {
+	'use strict';
 
-	$routeProvider
+	angular
+		.module('appRoutes', [])
+		.config(routes);
 
-		.when('/', {
-			templateUrl: '/app/home/home.html'
-		})
+		routes.$inject = ['$routeProvider', '$locationProvider'];
 
-		.when('/resume', {
-			templateUrl: '/app/resume/pdfRenderer.html'
-		})
+		function routes($routeProvider, $locationProvider) {
 
-		.when('/login', {
-			templateUrl: '/app/login/login.html'
-		})
+			$routeProvider
+				.when('/', {
+					templateUrl: '/app/home/home.html'
+				})
 
-		// blog route
-		.when('/blog', {
-			templateUrl: '/app/blog/blog.html'
-		})
+				.when('/resume', {
+					templateUrl: '/app/resume/pdfRenderer.html'
+				})
 
-		// blogPost route
-		.when('/blog/:blogUrl', {
-			templateUrl: '/app/blog/blogPost/blogPost.html'
-		})
+				.when('/login', {
+					templateUrl: '/app/login/login.html'
+				})
 
-		.when('/WriteBlogPost', {
-			templateUrl: '/app/blog/writeBlogPost/writeBlogPost.html'
-		})
+				// blog route
+				.when('/blog', {
+					templateUrl: '/app/blog/blog.html'
+				})
 
-		.otherwise({
-			templateUrl: '/app/error/404.html'
-		});
+				// blogPost route
+				.when('/blog/:blogUrl', {
+					templateUrl: '/app/blog/blogPost/blogPost.html'
+				})
 
-    $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false
-  });
+				.when('/WriteBlogPost', {
+					templateUrl: '/app/blog/writeBlogPost/writeBlogPost.html'
+				})
 
-}]);
+				.otherwise({
+					templateUrl: '/app/error/404.html'
+				});
+
+		    $locationProvider.html5Mode({
+		    enabled: true,
+		    requireBase: false
+		  });
+		}
+})();
