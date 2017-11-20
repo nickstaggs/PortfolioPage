@@ -5,7 +5,7 @@ angular.module('portfolioPage', [
   'app.home',
   'appRun',
   'app.resume',
-  'loginCtrl',
+  'app.login',
   'btford.markdown',
   'hljs'
 ]);

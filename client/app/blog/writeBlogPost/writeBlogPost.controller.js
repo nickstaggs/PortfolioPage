@@ -5,11 +5,11 @@
     .module('app.blog')
     .controller('WriteBlogPostController', WriteBlogPostController);
 
-    WriteBlogPostController.$inject = ['$scope', '$http', 'BlogService']
+    WriteBlogPostController.$inject = ['$scope', 'BlogService'];
 
-    function WriteBlogPostController($scope, $http, BlogService) {
+    function WriteBlogPostController($scope, BlogService) {
       let vm = this;
-      vm.blogPost = {}
+      vm.blogPost = {};
 
       vm.submit = submit;
 

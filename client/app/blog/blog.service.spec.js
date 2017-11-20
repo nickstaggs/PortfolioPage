@@ -52,4 +52,10 @@ describe('BlogService', function() {
 
     expect(result).toEqual(returnData);
   });
+
+  it('should post a blogpost', function() {
+    httpBackend.expectPOST("/api/blogPosts/");
+
+    BlogService.postBlogPost({post: 'post'});
+  });
 });

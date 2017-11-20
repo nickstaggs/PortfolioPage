@@ -1,20 +1,25 @@
-angular.module('loginCtrl', []).controller('LoginController',
-  ['$scope','$http','$location', function($scope, $http, $location) {
+(function() {
+  'use strict';
 
-    $scope.submit = function() {
+  angular
+    .module('app.login')
+    .controller('LoginController', LoginController);
 
-      var credentials = {username:this.username, password:this.password};
-      //console.log(credentials);
+    LoginController.$inject = ['$scope','LoginService','$location'];
 
-      $http.post('api/users', credentials).then(function successCallBack(response) {
-        //console.log("successCallBack");
-        //console.log(response);
-        $location.path(response.data.redirect);
-      },
+    function LoginController($scope, LoginService, $location) {
+      let vm = this;
+      vm.credentials = {};
 
-      function errorCallBack(response) {
-        //console.log(response);
-        //console.log("errorCallBack");
-      });
+      vm.submit = submit;
+
+      function submit() {
+
+        vm.credentials = {username:vm.username, password:vm.password};
+
+        return LoginService.getUser(vm.credentials).then((data) => {
+          $location.path(data.redirect);
+        });
+      }
     }
-}]);
+})();

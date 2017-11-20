@@ -3,7 +3,7 @@
     <h2>{{vm.blogPost.title}}</h2>
   </div>
   <div class="col s12 m8 offset-m2 l6 offset-l3">
-    <div class="blogPostBody" hljs hljs-no-escape btf-markdown ng-include="vm.blogPost.fileName"></div>
+    <div class="blogPostBody" btf-markdown hljs ng-include="vm.blogPost.fileName"></div>
   </div>
   <div class="col s12 m4 offset-m2 l3 offset-l3">
     <p>[{{vm.blogPost.tags}}]</p>

@@ -23,6 +23,7 @@ angular.module('btford.markdown', ['ngSanitize']).
   directive('btfMarkdown', ['$sanitize', 'markdownConverter', function ($sanitize, markdownConverter) {
     return {
       restrict: 'AE',
+      priority: 300,
       link: function (scope, element, attrs) {
         if (attrs.btfMarkdown) {
           scope.$watch(attrs.btfMarkdown, function (newVal) {

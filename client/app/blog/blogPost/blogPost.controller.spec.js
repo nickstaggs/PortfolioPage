@@ -14,7 +14,7 @@ describe('BlogPostController', function() {
 
     spyOn(BlogService, 'getBlogPost').and.callFake(function() {
         var deferred = $q.defer();
-        deferred.resolve('foo');
+        deferred.resolve({fileName: 'foo'});
         return deferred.promise;
     });
 
@@ -26,16 +26,14 @@ describe('BlogPostController', function() {
   });
 
   it('Should call BlogService', function() {
-    //routeParams.blogId = 'id';
     vm.getBlogPost();
 
     expect(BlogService.getBlogPost).toHaveBeenCalled();
   });
 
   it('Should set blogPosts returned by the service to vm.blogPosts', function() {
-    //routeParams.blogId = 'id';
     vm.getBlogPost();
     scope.$apply();
-    expect(vm.blogPost).toEqual('foo');
+    expect(vm.blogPost).toEqual({fileName:'/documents/foo'});
   });
 });

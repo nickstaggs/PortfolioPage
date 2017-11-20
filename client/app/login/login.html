@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" ng-controller="LoginController as vm">
   <div class="col s10 offset-s1">
-    <form ng-submit="submit()">
+    <form ng-submit="vm.submit()">
       <p>Username</p>
-      <input name="userName" ng-model="username" type="text"/>
+      <input name="userName" ng-model="vm.username" type="text"/>
       <p>Password</p>
-      <input name="password" ng-model="password" type="password"/>
+      <input name="password" ng-model="vm.password" type="password"/>
       <input type="submit" id="submit" value="Submit" />
     </form>
   </div>

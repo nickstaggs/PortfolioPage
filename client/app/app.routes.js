@@ -12,8 +12,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 		})
 
 		.when('/login', {
-			templateUrl: '/app/login/login.html',
-			controller: 'LoginController'
+			templateUrl: '/app/login/login.html'
 		})
 
 		// blog route
@@ -31,8 +30,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 		})
 
 		.otherwise({
-			templateUrl: '/app/error/404.html',
-			controller: 'ErrorController'
+			templateUrl: '/app/error/404.html'
 		});
 
     $locationProvider.html5Mode({
