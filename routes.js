@@ -7,6 +7,10 @@ var fs = require('fs');
 var config = require('./config.js');
 var mongoose = require('mongoose');
 var moment = require('moment');
+var showdown = require('showdown');
+var showdownHighlight = require('showdown-highlight');
+var converter = new showdown.Converter({ extensions: [showdownHighlight] });
+converter.setFlavor('github');
 
 /*=====================  LOGGER  ======================*/
   const logger = new winston.Logger({
@@ -58,10 +62,12 @@ module.exports = function (app) {
 
         let post = {};
 
+        let blogFilePath = path.join(__dirname, 'client', 'documents', blogPost.fileName);
+        logger.info(blogFilePath);
+
+
+        post.body = converter.makeHtml(fs.readFileSync(blogFilePath, 'utf8'));
         post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
-        post.url = blogPost.url;
-        post.fileName = blogPost.fileName;
-        post.summary = blogPost.summary;
         post.title = blogPost.title;
         post.tags = blogPost.tags;
 

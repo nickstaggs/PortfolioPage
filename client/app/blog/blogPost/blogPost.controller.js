@@ -15,7 +15,6 @@
 
       initPost();
 
-
       function initPost() {
         getBlogPost();
       };
@@ -24,7 +23,6 @@
         return BlogService.getBlogPost($routeParams.blogUrl)
           .then(function(data) {
             vm.blogPost = data;
-            vm.blogPost.fileName = '/documents/' + vm.blogPost.fileName;
             return vm.blogPost;
           });
       }

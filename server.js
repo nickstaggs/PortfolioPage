@@ -69,16 +69,6 @@ const logger = new winston.Logger({
 // routes ======================================================================
 require('./routes.js')(app);
 
-// listen (start app with node server.js) ======================================
-// var options = {
-//   key: fs.readFileSync('key.key', 'utf-8'),
-//   cert: fs.readFileSync('cert.crt', 'utf-8'),
-//   passphrase:'poop1',
-//   requestCert: false,
-//   rejectUnauthorized: false
-// };
-
-// listen (start app with node server.js) ======================================
 var options = {
  key: fs.readFileSync(config.connectionOptions.privkey),
  cert: fs.readFileSync(config.connectionOptions.fullchain),
