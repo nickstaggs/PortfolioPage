@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var path = require('path');
 var fs = require('fs');
-var winston = require("winston");
+var logger = require(path.join(__dirname, 'lib', 'logger.js'));
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 var https = require('https');
@@ -42,29 +42,6 @@ app.use(session({
   cookie: {secure: false},
   username: 'guest'
 }));
-
-
-/*******************************************************************************
-* LOGGER
-*******************************************************************************/
-const logger = new winston.Logger({
-    level: 'verbose',
-    transports: [
-      new winston.transports.Console({
-        timestamp: true,
-        handleExceptions: true,
-        humanReadableUnhandledException: true
-      }),
-      new winston.transports.File({
-        filename: path.join(__dirname, 'logs', 'app.log'),
-        timestamp: true,
-        handleExceptions: true,
-        humanReadableUnhandledException: true
-      })
-    ]
-  });
-/******************************************************************************/
-
 
 // routes ======================================================================
 require('./routes.js')(app);

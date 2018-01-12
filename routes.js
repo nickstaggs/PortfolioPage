@@ -2,7 +2,7 @@ var path = require('path');
 var BlogPost = require(path.join(__dirname, 'models', 'blogPost.js'));
 var User = require(path.join(__dirname, 'models', 'user.js'));
 var bcrypt = require('bcryptjs');
-var winston = require("winston");
+var logger = require(path.join(__dirname, 'lib', 'logger.js'));
 var fs = require('fs');
 var config = require('./config.js');
 var mongoose = require('mongoose');
@@ -12,32 +12,18 @@ var showdownHighlight = require('showdown-highlight');
 var converter = new showdown.Converter({ extensions: [showdownHighlight] });
 converter.setFlavor('github');
 
-/*=====================  LOGGER  ======================*/
-  const logger = new winston.Logger({
-      level: 'verbose',
-      transports: [
-        new winston.transports.Console({
-          timestamp: true,
-          handleExceptions: true,
-          humanReadableUnhandledException: true
-        }),
-        new winston.transports.File({
-          filename: path.join(__dirname, 'logs', 'app.log'),
-          timestamp: true,
-          handleExceptions: true,
-          humanReadableUnhandledException: true
-        })
-      ]
-    });
-/*=====================================================*/
-
 module.exports = function (app) {
 
   app.get('/api/blogposts', function(req, res) {
-    BlogPost.find(function(err, blogPosts) {
+    BlogPost.find().lean().exec(function(err, blogPosts) {
 
       if (err) {
         res.send(err);
+      }
+
+      var i;
+      for (i = 0; i < blogPosts.length; i++) {
+        blogPosts[i].datePosted = moment(blogPosts[i].datePosted).format('MMMM Do, YYYY');
       }
 
       logger.info("sending blogPosts");
