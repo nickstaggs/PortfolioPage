@@ -1,20 +1,19 @@
-// set up ======================================================================
-var dotenv = require('dotenv').config();
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var port = process.env.PORT || 8080;
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var path = require('path');
-var fs = require('fs');
-var logger = require(path.join(__dirname, 'lib', 'logger.js'));
-var session = require("express-session");
-var MongoStore = require("connect-mongo")(session);
-var https = require('https');
-var http = require('http');
-var config = require('./config.js');
+const dotenv = require('dotenv').config();
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const path = require('path');
+const fs = require('fs');
+const logger = require(path.join(__dirname, 'lib', 'logger.js'));
+const https = require('https');
+const http = require('http');
+const config = require('./config/config.js');
+const sessions = require('./sessions/index.js');
+const posts = require('./posts');
+const users = require('./users');
 
 // configuration ===============================================================
 
@@ -29,19 +28,11 @@ app.use(morgan('combined', {stream: accessLogStream}));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
-
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-var dbReadWriteConnect = mongoose.createConnection(config.dbOptions.readWriteUrl);
-
-app.use(session({
-  secret: process.env.secretSauce,
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection : dbReadWriteConnect }),
-  cookie: {secure: false},
-  username: 'guest'
-}));
+app.use(sessions);
+app.use(posts)
+app.use(users)
 
 // routes ======================================================================
 require('./routes.js')(app);
