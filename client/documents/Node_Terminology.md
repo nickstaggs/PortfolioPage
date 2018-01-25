@@ -15,7 +15,16 @@ fs.readFile('~/file1.txt', (err, data) => {
 });
 
 console.log("this happens second");
+
+// Output:
+// this happens second
+// (contents of file1.txt)
 ```
-One might assume that the contents of file1 would be printed out before "this happens second." However, most, if not all of the time "this happens second" would be printed first. This because Node.js would see the request to read the contents of file1, put the request into the libuv event loop to be processed by the operating system(OS), and then continue to execute the rest of the code while the OS fetches the file and reads it. This bit of code also demonstrates Node's error-first callback convention which will be explained later on.
+One might assume that the contents of file1 would be printed out before "this happens second." However, most, if not all of the time "this happens second" would be printed first. This because Node.js would see the request to read the contents of file1, put the request into the libuv event loop to be processed by the operating system(OS), and then continue to execute the rest of the code while the OS fetches the file and reads it. This piece of code also does not block other requests being made to the server such as a query to a database. This bit of code also demonstrates Node's error-first callback convention which will be explained later on.
 ### V8 JavaScript Engine
-The V8 JavaScript engine is what compiles the JavaScript in Node applications into machine language, such as x86, ARM and MIPS, so it can executed by the machine that the Node application is running on.
+The V8 JavaScript engine is what compiles the JavaScript in Node applications into machine language, such as x86, ARM and MIPS, so it can executed by the machine that the Node application is running on. This component of Node can be switched out with any of the other JavaScript engines and has been in a couple of forked projects of Node such as SpiderNode which is Node built with Mozilla's JavaScript engine SpiderMonkey.
+### libuv
+libuv is a library that Node uses to provide access to all of the functions of the underlying OS such as file system operations, and network connections. It does all of this asynchronously via its event loop which is the central part of libuv. The event loop establishes I/O content for all I/O operations which are performed on non-blocking sockets which are polled using the best polling mechanism on the given platform such as epoll on Linux or IOCP on Windows.
+### Error-first Callback
+### libuv Event Loop
+### NPM
