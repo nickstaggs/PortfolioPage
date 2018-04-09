@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.promise = global.promise;
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
