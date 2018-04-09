@@ -5,17 +5,20 @@ var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var fs = require('fs');
 var config = require('./../config/config.js');
 var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const express = require('express');
 const app = module.exports = express();
+
+app.use(bodyParser.urlencoded({'extended': 'true'}));
+app.use(bodyParser.json());
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 app.post('/api/users', function(req, res) {
 
   var session = req.session;
 
   logger.info(req.body.username);
-  logger.info(req.session.id);
-  logger.info(req.ip);
 
   User.findOne({ username: req.body.username }, 'username password', function(err, user) {
 
