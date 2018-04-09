@@ -10,23 +10,23 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'sinon', 'browserify'],
+    frameworks: ['jasmine', 'sinon', 'browserify', 'mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js',
       'client/dependencies/angular/angular.js',
       'client/dependencies/angular-route/angular-route.js',
+      'client/dependencies/angular-sanitize/angular-sanitize.js',
+      'client/dependencies/angular-markdown-directive/markdown.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'models/*',
       'client/app/app.module.js',
       'client/app/app.routes.js',
       'client/app/app.run.js',
       'client/app/**/*.module.js',
       'client/app/**/*.service.js',
       'client/app/**/*.controller.js',
-      'client/app/**/*.spec.js',
+      'client/app/**/*.spec.js'
     ],
 
 
@@ -39,10 +39,9 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
        'client/app/**/*.spec.js': [ 'browserify' ],
-       'models/*.js': [ 'browserify' ],
     },
 
-    plugins: ['karma-browserify', 'karma-jasmine', 'karma-chrome-launcher', 'karma-sinon'],
+    plugins: ['karma-browserify', 'karma-jasmine', 'karma-chrome-launcher', 'karma-sinon', 'karma-mocha', 'karma-chai'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

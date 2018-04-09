@@ -8,6 +8,7 @@ var moment = require('moment');
 var showdown = require('showdown');
 var showdownHighlight = require('showdown-highlight');
 var converter = new showdown.Converter({ extensions: [showdownHighlight] });
+const config = require('./../config/config.js');
 converter.setFlavor('github');
 
 const express = require('express');
@@ -47,7 +48,7 @@ app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
 
       let post = {};
 
-      let blogFilePath = path.join(__dirname, 'client', 'documents', blogPost.fileName);
+      let blogFilePath = path.join(__dirname, '..', 'client', 'documents', blogPost.fileName);
       logger.info(blogFilePath);
 
 

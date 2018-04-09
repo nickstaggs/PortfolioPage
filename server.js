@@ -12,7 +12,7 @@ const https = require('https');
 const http = require('http');
 const config = require('./config/config.js');
 const sessions = require('./sessions/index.js');
-const posts = require('./posts');
+const blogposts = require('./blogposts');
 const users = require('./users');
 
 // configuration ===============================================================
@@ -31,7 +31,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(sessions);
-app.use(posts)
+app.use(blogposts)
 app.use(users)
 
 // routes ======================================================================

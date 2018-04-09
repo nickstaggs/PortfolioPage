@@ -34,6 +34,6 @@ describe('BlogPostController', function() {
   it('Should set blogPosts returned by the service to vm.blogPosts', function() {
     vm.getBlogPost();
     scope.$apply();
-    expect(vm.blogPost).toEqual({fileName:'/documents/foo'});
+    expect(vm.blogPost).toEqual({fileName:'foo'});
   });
 });
