@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.promise = global.promise;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 var Schema = mongoose.Schema;
 
 var blogPostSchema = new Schema({
@@ -8,8 +9,8 @@ var blogPostSchema = new Schema({
     type: String
   },
 
-  fileName: {
-    type: String
+  file: {
+    type: [ObjectId]
   },
 
   url: {
@@ -20,8 +21,12 @@ var blogPostSchema = new Schema({
     type: String
   },
 
+  images: {
+    type: [ObjectId]
+  },
+
   tags: {
-    type: String
+    type: [String]
   },
 
   datePosted: {
