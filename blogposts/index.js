@@ -1,5 +1,6 @@
 var path = require('path');
 var BlogPost = require('./blogPost.js');
+var File = require('../files/files.js');
 var User = require(path.join(__dirname, '..', 'users', 'user.js'));
 var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var fs = require('fs');
@@ -48,11 +49,21 @@ app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
 
       let post = {};
 
-      let blogFilePath = path.join(__dirname, '..', 'client', 'documents', blogPost.fileName);
+      let blogFile;
+      File.findById(blogPost.file, function (err, file) {
+        if(err) {
+          logger.info("Oops couldnt retrieve blogpost file: " + err);
+          res.status(500).send(err);
+        }
+
+        else {
+          blogFile = file;
+        }
+      });
+
       logger.info(blogFilePath);
 
-
-      post.body = converter.makeHtml(fs.readFileSync(blogFilePath, 'utf8'));
+      post.body = converter.makeHtml(blogFile.data);
       post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
       post.title = blogPost.title;
       post.tags = blogPost.tags;
