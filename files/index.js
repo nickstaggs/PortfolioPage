@@ -55,31 +55,9 @@ app.get('/api/files/:id', function (req, res) {
             res.status(404).send("That file does not exist");
 
         } else {
-
-
             res.contentType(post.type)
             res.send(post.data);
         }
     });
 });
 
-app.post('/api/files', function (req, res) {
-
-    User.findOne({ username: req.session.username }, 'username', function (err, user) {
-
-        if (err) {
-            logger.info('error in db lookup for: ' + req.session.username);
-            logger.info(err)
-            res.status(500).send(err);
-        }
-
-        else if (user === null) {
-            logger.info("Unauthorized attempt to post file by: " + req.session.username);
-            res.status(401).send("You are not authorized");
-        }
-
-        else {
-            
-        }
-    });
-});
