@@ -61,8 +61,6 @@ app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
         }
       });
 
-      logger.info(blogFilePath);
-
       post.body = converter.makeHtml(blogFile.data);
       post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
       post.title = blogPost.title;
