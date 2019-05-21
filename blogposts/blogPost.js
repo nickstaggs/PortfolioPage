@@ -10,7 +10,7 @@ var blogPostSchema = new Schema({
   },
 
   file: {
-    type: [ObjectId]
+    type: ObjectId
   },
 
   url: {
@@ -19,10 +19,6 @@ var blogPostSchema = new Schema({
 
   summary: {
     type: String
-  },
-
-  images: {
-    type: [ObjectId]
   },
 
   tags: {
