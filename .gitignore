@@ -12,5 +12,6 @@ lib-cov
 *.crt
 *.env
 www.nickstaggs.com
+.vscode
 
 node_modules
