@@ -28,7 +28,7 @@
     "method-override": "^2.3.10",
     "moment": "^2.24.0",
     "mongodb": "^2.2.36",
-    "mongoose": "^4.13.18",
+    "mongoose": "^5.2.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "serve-favicon": "^2.5.0",
@@ -40,7 +40,6 @@
   "scripts": {
     "prenoderestart": "kill $(ps aux | grep '[n]ode' | awk '{print $2}')",
     "noderestart": "nohup node server.js &",
-    "prestart": "mongod --config ./config/mongod.cfg & sleep 5",
     "start": "nohup node server.js &",
     "test": "karma start karma.conf.js"
   },

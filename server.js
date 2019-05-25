@@ -17,7 +17,15 @@ const users = require('./users');
 
 // configuration ===============================================================
 
-mongoose.connect(config.dbOptions.readUrl);
+mongoose.connect(config.dbOptions.readWriteUrl, {
+    auth: {
+        user: config.dbOptions.username,
+        password: config.dbOptions.password
+    }
+})
+    .then(() => console.log("mongoose connection successful"))
+    .catch((err) => console.log("mongoose connection successful: " + err));
+
 // set the static files location
 app.use(express.static('./client'));
 

@@ -37,17 +37,9 @@ app.post('/api/users', function(req, res) {
 
         } else {
 
-          // redirect to post blog page
-          // set req.session.user to user
-          mongoose.connection.close()
-
-          mongoose.connection.on('close', function() {
-
-            mongoose.connect(config.dbOptions.bloggerUrl);
-            logger.info(req.body.username + " logged in");
-            req.session.username = user.username;
-            res.send({redirect: '/WriteBlogPost'});
-          });
+          logger.info(req.body.username + " logged in");
+          req.session.username = user.username;
+          res.send({redirect: '/WriteBlogPost'});
         }
       });
 
