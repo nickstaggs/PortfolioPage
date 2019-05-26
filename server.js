@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -14,6 +14,7 @@ const config = require('./config/config.js');
 const sessions = require('./sessions/index.js');
 const blogposts = require('./blogposts');
 const users = require('./users');
+const files = require('./files');
 
 // configuration ===============================================================
 
@@ -39,8 +40,9 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(sessions);
-app.use(blogposts)
-app.use(users)
+app.use(blogposts);
+app.use(users);
+app.use(files);
 
 // routes ======================================================================
 require('./routes.js')(app);

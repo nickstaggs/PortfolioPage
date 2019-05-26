@@ -61,3 +61,36 @@ app.get('/api/files/:id', function (req, res) {
     });
 });
 
+app.post('/api/files', upload.single('file'), (req, res) => {
+    User.findOne({ username: req.session.username }, 'username', function (err, user) {
+
+        if (err) {
+            logger.info('error in db lookup for: ' + req.session.username);
+            logger.info(err)
+            res.status(500).send(err);
+        }
+
+        else if (user === null) {
+            logger.info("Unauthorized attempt to see all files by: " + req.session.username);
+            res.status(401).send("You are not authorized");
+        }
+
+        else {
+            var file = fs.readFileSync(req.file.path);
+            var encode_file = file.toString('base64');
+
+            var fileObject = new File({name: req.body.name, data: new Buffer(encode_file, 'base64'), type: req.body.type});
+
+            fileObject.save((err) => {
+                if (err) {
+                    logger.info('DB did not save file');
+                    logger.info(err);
+                    res.status(500).send(false);
+                } else {
+                    res.send(true);
+                }
+            });
+        }
+    });
+})
+

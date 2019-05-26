@@ -13,5 +13,5 @@ lib-cov
 *.env
 www.nickstaggs.com
 .vscode
-
+uploads
 node_modules
