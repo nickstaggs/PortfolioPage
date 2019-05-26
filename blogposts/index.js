@@ -3,20 +3,18 @@ var BlogPost = require('./blogPost.js');
 var File = require('../files/files.js');
 var User = require(path.join(__dirname, '..', 'users', 'user.js'));
 var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
-var fs = require('fs');
-var mongoose = require('mongoose');
 var moment = require('moment');
 var showdown = require('showdown');
 var showdownHighlight = require('showdown-highlight');
 var converter = new showdown.Converter({ extensions: [showdownHighlight] });
-const config = require('./../config/config.js');
+var mongoose = require('mongoose');
 converter.setFlavor('github');
 
 const express = require('express');
 const app = module.exports = express();
 
-app.get('/api/blogposts', function(req, res) {
-  BlogPost.find().lean().exec(function(err, blogPosts) {
+app.get('/api/blogposts', (req, res) => {
+  BlogPost.find().lean().exec((err, blogPosts) => {
 
     if (err) {
       res.status(500).send(err);
@@ -32,9 +30,9 @@ app.get('/api/blogposts', function(req, res) {
   });
 });
 
-app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
+app.get('/api/blogPosts/:blogpostUrl', (req, res) => {
 
-  BlogPost.findOne({'url': req.params.blogpostUrl }, function(err, blogPost) {
+  BlogPost.findOne({'url': req.params.blogpostUrl }, (err, blogPost) => {
     logger.info(req.params.blogpostUrl);
     if(err) {
 
@@ -45,12 +43,14 @@ app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
 
       res.status(404).send("That blogpost does not exist");
 
-    } else {
+    } 
+    
+    else {
 
       let post = {};
 
       let blogFile;
-      File.findById(blogPost.file, function (err, file) {
+      File.findById(blogPost.file, (err, file) => {
         if(err) {
           logger.info("Oops couldnt retrieve blogpost file: " + err);
           res.status(500).send(err);
@@ -58,25 +58,26 @@ app.get('/api/blogPosts/:blogpostUrl', function(req, res) {
 
         else {
           blogFile = file;
+          let buffer = new Buffer(blogFile.data, 'base64');
+          let text = buffer.toString('utf8');
+          post.body = converter.makeHtml(text);
+          post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
+          post.title = blogPost.title;
+          post.tags = blogPost.tags;
+
+          logger.info(blogPost.datePosted + " time");
+
+          logger.info(moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm a'));
+          res.json(post);
         }
       });
-
-      post.body = converter.makeHtml(blogFile.data);
-      post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
-      post.title = blogPost.title;
-      post.tags = blogPost.tags;
-
-      logger.info(blogPost.datePosted + " time");
-
-      logger.info(moment(blogPost.datePosted).format('MMMM Do YYYY, h:mm a'));
-      res.json(post);
     }
   });
 });
 
-app.post('/api/blogPosts', function(req, res) {
+app.post('/api/blogPosts', (req, res) => {
 
-  User.findOne({ username: req.session.username }, 'username', function(err, user) {
+  User.findOne({ username: req.session.username }, 'username', (err, user) => {
 
     if(err) {
       logger.info('error in db lookup for: ' + req.session.username);
@@ -91,9 +92,13 @@ app.post('/api/blogPosts', function(req, res) {
 
     else {
       var post = new BlogPost({title: req.body.title,
-        fileName: req.body.fileName, url: req.body.url, summary:req.body.summary, tags: req.body.tags});
+        file: mongoose.Types.ObjectId(req.body.file), url: req.body.url, summary:req.body.summary, tags: req.body.tags});
 
-      post.save(function(err) {
+      if (req.body.datePosted != null) {
+        post.datePosted = req.body.datePosted;
+      }
+
+      post.save((err) => {
         if(err) {
           logger.info('DB did not create record');
           logger.info(err);
