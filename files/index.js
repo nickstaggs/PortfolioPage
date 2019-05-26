@@ -5,10 +5,6 @@ var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var fs = require('fs');
-const querystring = require('querystring');
-var mongoose = require('mongoose');
-const config = require('./../config/config.js');
-
 const express = require('express');
 const app = module.exports = express();
 
