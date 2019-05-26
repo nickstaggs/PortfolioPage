@@ -5,64 +5,90 @@ var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var fs = require('fs');
+const querystring = require('querystring');
 var mongoose = require('mongoose');
 const config = require('./../config/config.js');
 
 const express = require('express');
 const app = module.exports = express();
 
-app.get('/api/files', function (req, res) {
+app.get('/api/files', (req, res) => {
 
-    User.findOne({ username: req.session.username }, 'username', function (err, user) {
+    if (req.query.id != null) {
+        File.findById(req.query.id, function (err, file) {
+            logger.info(req.query.id);
+            if (err) {
 
-        if (err) {
-            logger.info('error in db lookup for: ' + req.session.username);
-            logger.info(err)
-            res.status(500).send(err);
-        }
+                logger.info("error");
+                res.status(500).send(err);
 
-        else if (user === null) {
-            logger.info("Unauthorized attempt to see all files by: " + req.session.username);
-            res.status(401).send("You are not authorized");
-        }
+            } else if (file === null) {
 
-        else {
-            File.find().lean().exec(function (err, files) {
+                res.status(404).send("That file does not exist");
 
-                if (err) {
-                    res.status(500).send(err);
-                }
+            } else {
+                res.contentType(file.type)
+                res.send(file.data);
+            }
+        });
+    }
 
-                logger.info("sending files");
-                res.json(files);
-            });
-        }
+    else if (req.query.name != null) {
+        File.findOne({ name: req.query.name }, (err, file) => {
+            logger.info(req.query.name);
+            if (err) {
+
+                logger.info("error");
+                res.status(500).send(err);
+
+            } else if (file === null) {
+
+                res.status(404).send("That file does not exist");
+
+            } else {
+                res.contentType(file.type)
+                res.send(file.data);
+            }
+        });
+    }
+
+    else if (Object.entries(req.query).length === 0 && req.query.constructor === Object) {
+        User.findOne({ username: req.session.username }, 'username', (err, user) => {
+
+            if (err) {
+                logger.info('error in db lookup for: ' + req.session.username);
+                logger.info(err)
+                res.status(500).send(err);
+            }
+
+            else if (user === null) {
+                logger.info("Unauthorized attempt to see all files by: " + req.session.username);
+                res.status(401).send("You are not authorized");
+            }
+
+            else {
+                File.find().lean().exec((err, files) => {
+
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+
+                    logger.info("sending files");
+                    res.json(files);
+                });
+            }
+
+        });
+    }
+
+    else {
+        res.status(400).send("Invalid request");
+    }
     
-    });
-});
-
-app.get('/api/files/:id', function (req, res) {
-
-    File.findById(req.params.id, function (err, file) {
-        logger.info(req.params.id);
-        if (err) {
-
-            logger.info("error");
-            res.status(500).send(err);
-
-        } else if (file === null) {
-
-            res.status(404).send("That file does not exist");
-
-        } else {
-            res.contentType(post.type)
-            res.send(post.data);
-        }
-    });
 });
 
 app.post('/api/files', upload.single('file'), (req, res) => {
-    User.findOne({ username: req.session.username }, 'username', function (err, user) {
+    User.findOne({ username: req.session.username }, 'username', (err, user) => {
 
         if (err) {
             logger.info('error in db lookup for: ' + req.session.username);
