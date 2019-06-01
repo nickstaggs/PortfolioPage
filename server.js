@@ -15,6 +15,7 @@ const sessions = require('./sessions/index.js');
 const blogposts = require('./blogposts');
 const users = require('./users');
 const files = require('./files');
+const cors = require('cors');
 
 // configuration ===============================================================
 
@@ -38,6 +39,13 @@ app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
+
+var corsOptions = {
+    origin: config.cors.origin
+}
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(sessions);
 app.use(blogposts);
