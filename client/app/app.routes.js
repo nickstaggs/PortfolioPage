@@ -18,10 +18,6 @@
 					templateUrl: '/app/resume/pdfRenderer.html'
 				})
 
-				.when('/login', {
-					templateUrl: '/app/login/login.html'
-				})
-
 				// blog route
 				.when('/blog', {
 					templateUrl: '/app/blog/blog.html'

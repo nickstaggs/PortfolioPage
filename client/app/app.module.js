@@ -5,6 +5,5 @@ angular.module('portfolioPage', [
   'app.home',
   'appRun',
   'app.resume',
-  'app.login',
   'btford.markdown'
 ]);
