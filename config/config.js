@@ -4,10 +4,13 @@ var config = {};
 
 config.dbOptions = {};
 config.connectionOptions = {};
+config.cors = {};
 
 config.dbOptions.readWriteUrl = process.env.mongoHost
 config.dbOptions.username = process.env.mongoUsername
 config.dbOptions.password = process.env.mongoPassword
+
+config.cors.origin = process.env.corsOrigin || 'http://localhost:8080'
 
 config.connectionOptions.httpPort = process.env.httpPort || '8000';
 config.connectionOptions.httpsPort = process.env.httpsPort || '8443';
