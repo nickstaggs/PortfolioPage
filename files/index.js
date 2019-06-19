@@ -11,7 +11,7 @@ const app = module.exports = express();
 app.get('/api/files', (req, res) => {
 
     if (req.query.id != null) {
-        File.findById(req.query.id, function (err, file) {
+        File.findById(req.query.id, (err, file) => {
             logger.info(req.query.id);
             if (err) {
 
@@ -81,6 +81,17 @@ app.get('/api/files', (req, res) => {
         res.status(400).send("Invalid request");
     }
     
+});
+
+app.get('/api/files/:id', (req, res) => {
+    File.findById(req.params.id, (err, file) => {
+        if (err) {
+            logger.info(err);
+            res.status(500).send(err);
+        }
+
+        res.json(file);
+    })
 });
 
 app.post('/api/files', upload.single('file'), (req, res) => {
