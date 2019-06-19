@@ -14,20 +14,57 @@ const express = require('express');
 const app = module.exports = express();
 
 app.get('/api/blogposts', (req, res) => {
-  BlogPost.find().lean().exec((err, blogPosts) => {
+  if (req.query.id === undefined) {
+    BlogPost.find().lean().exec((err, blogPosts) => {
 
-    if (err) {
-      res.status(500).send(err);
-    }
+      if (err) {
+        res.status(500).send(err);
+      }
 
-    var i;
-    for (i = 0; i < blogPosts.length; i++) {
-      blogPosts[i].datePosted = moment(blogPosts[i].datePosted).format('MMMM Do, YYYY');
-    }
+      var i;
+      for (i = 0; i < blogPosts.length; i++) {
+        blogPosts[i].datePosted = moment(blogPosts[i].datePosted).format('MMMM Do, YYYY');
+      }
 
-    logger.info("sending blogPosts");
-    res.json(blogPosts);
-  });
+      logger.info("sending blogPosts");
+      res.json(blogPosts);
+    });
+  }
+
+
+  else {
+    BlogPost.findById(req.query.id, (err, blogpost) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+
+      res.json(blogpost);
+    });
+  }
+  
+});
+
+app.get('/api/blogPosts/empty', (req, res) => {
+    let blogpost = {}
+    
+    blogpost.title = "";
+    blogpost.summary = "";
+    blogpost.tags = []; 
+    blogpost.url = "";
+    File.find({}, 'name _id').lean().exec((err, files) => {
+
+        if (err) {
+            res.status(500).send(err);
+        }
+
+        logger.info("sending files");
+        blogpost.file = [];
+        files.forEach(dbFile => {
+          blogpost.file.push({name: dbFile.name, id: dbFile._id.toString()});
+        });
+
+        res.json(blogpost);
+    });
 });
 
 app.get('/api/blogPosts/:blogpostUrl', (req, res) => {
