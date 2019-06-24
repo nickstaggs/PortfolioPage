@@ -41,7 +41,8 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 var corsOptions = {
-    origin: config.cors.origin
+    origin: config.cors.origin,
+    credentials: true
 }
 
 app.use(cors(corsOptions));

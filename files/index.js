@@ -3,7 +3,7 @@ var File = require('./files.js');
 var User = require(path.join(__dirname, '..', 'users', 'user.js'));
 var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({storage: multer.memoryStorage()})
 var fs = require('fs');
 const express = require('express');
 const app = module.exports = express();
@@ -23,8 +23,8 @@ app.get('/api/files', (req, res) => {
                 res.status(404).send("That file does not exist");
 
             } else {
-                res.contentType(file.type)
-                res.send(file.data);
+
+                res.json(file);
             }
         });
     }
@@ -83,6 +83,16 @@ app.get('/api/files', (req, res) => {
     
 });
 
+app.get('/api/files/empty', (req, res) => {
+    let file = {}
+    
+    file.name = "";
+    file.data = "file";
+    file.type = ""; 
+
+    res.json(file);
+});
+
 app.get('/api/files/:id', (req, res) => {
     File.findById(req.params.id, (err, file) => {
         if (err) {
@@ -90,11 +100,12 @@ app.get('/api/files/:id', (req, res) => {
             res.status(500).send(err);
         }
 
-        res.json(file);
+        res.contentType(file.type);
+        res.send(file.data);
     })
 });
 
-app.post('/api/files', upload.single('file'), (req, res) => {
+app.post('/api/files', upload.single('data'), (req, res) => {
     User.findOne({ username: req.session.username }, 'username', (err, user) => {
 
         if (err) {
@@ -109,10 +120,9 @@ app.post('/api/files', upload.single('file'), (req, res) => {
         }
 
         else {
-            var file = fs.readFileSync(req.file.path);
-            var encode_file = file.toString('base64');
+            var raw = new Buffer(req.file.buffer.toString(), 'base64');
 
-            var fileObject = new File({name: req.body.name, data: new Buffer(encode_file, 'base64'), type: req.body.type});
+            var fileObject = new File({name: req.body.name, data: raw, type: req.body.type});
 
             fileObject.save((err) => {
                 if (err) {
