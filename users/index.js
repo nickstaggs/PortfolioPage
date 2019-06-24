@@ -39,7 +39,7 @@ app.post('/api/users', function(req, res) {
 
           logger.info(req.body.username + " logged in");
           req.session.username = user.username;
-          res.send({redirect: '/WriteBlogPost'});
+          res.send(true);
         }
       });
 
