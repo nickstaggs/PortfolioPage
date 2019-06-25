@@ -13,7 +13,6 @@
       return {
         getBlogPosts: getBlogPosts,
         getBlogPost: getBlogPost,
-        postBlogPost: postBlogPost
       };
 
       function getBlogPosts() {
