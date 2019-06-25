@@ -28,12 +28,6 @@
           .catch(errorCallBack);
       }
 
-      function postBlogPost(post) {
-        return $http.post(baseUrl, post)
-          .then(successCallBack)
-          .catch(errorCallBack);
-      }
-
       function successCallBack(response) {
         console.log("success");
         console.log(response);
