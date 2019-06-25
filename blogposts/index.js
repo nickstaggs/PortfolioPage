@@ -129,7 +129,7 @@ app.post('/api/blogPosts', (req, res) => {
 
     else {
       var post = new BlogPost({title: req.body.title,
-        file: mongoose.Types.ObjectId(req.body.file), url: req.body.url, summary:req.body.summary, tags: req.body.tags});
+        file: mongoose.Types.ObjectId(req.body.file), url: req.body.url, summary:req.body.summary, tags: req.body.tags.split(',')});
 
       if (req.body.datePosted != null) {
         post.datePosted = req.body.datePosted;
