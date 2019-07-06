@@ -100,7 +100,8 @@ app.get('/api/files/:id', (req, res) => {
             res.status(500).send(err);
         }
 
-        res.contentType(file.type);
+        res.contentType(file.type + ';base64');
+        res.setHeader("Content-Length", file.data.length)
         res.send(file.data);
     })
 });
@@ -120,9 +121,8 @@ app.post('/api/files', upload.single('data'), (req, res) => {
         }
 
         else {
-            var raw = new Buffer(req.file.buffer.toString(), 'base64');
 
-            var fileObject = new File({name: req.body.name, data: raw, type: req.body.type});
+            var fileObject = new File({name: req.body.name, data: req.file.buffer, type: req.body.type});
 
             fileObject.save((err) => {
                 if (err) {

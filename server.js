@@ -15,6 +15,7 @@ const sessions = require('./sessions/index.js');
 const blogposts = require('./blogposts');
 const users = require('./users');
 const files = require('./files');
+const projects = require('./projects');
 const cors = require('cors');
 
 // configuration ===============================================================
@@ -52,6 +53,7 @@ app.use(sessions);
 app.use(blogposts);
 app.use(users);
 app.use(files);
+app.use(projects);
 
 // routes ======================================================================
 require('./routes.js')(app);
