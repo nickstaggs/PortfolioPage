@@ -16,6 +16,7 @@ const blogposts = require('./blogposts');
 const users = require('./users');
 const files = require('./files');
 const projects = require('./projects');
+const content = require('./content');
 const cors = require('cors');
 
 // configuration ===============================================================
@@ -54,6 +55,7 @@ app.use(blogposts);
 app.use(users);
 app.use(files);
 app.use(projects);
+app.use(content);
 
 // routes ======================================================================
 require('./routes.js')(app);
