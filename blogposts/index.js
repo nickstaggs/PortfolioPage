@@ -14,7 +14,36 @@ const express = require('express');
 const app = module.exports = express();
 
 app.get('/api/blogposts', (req, res) => {
-  if (req.query.id === undefined) {
+  
+
+  if (req.query.latest !== undefined && req.query.latest === "true") {
+    BlogPost.find().sort({datePosted: -1}).limit(1).exec((err, post) => {
+        if (err) {
+            logger.info("error");
+            res.status(500).send(err);
+        }
+
+        else {
+            res.json(post);
+        }
+    })
+  }
+
+  else if (req.query.id !== undefined) {
+    BlogPost.findById(req.query.id, (err, blogpost) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+
+      if (blogpost === null) {
+        res.status(404).send("That blogpost does not exist");
+      }
+
+      res.json(blogpost);
+    });
+  }
+
+  else {
     BlogPost.find().lean().exec((err, blogPosts) => {
 
       if (err) {
@@ -28,17 +57,6 @@ app.get('/api/blogposts', (req, res) => {
 
       logger.info("sending blogPosts");
       res.json(blogPosts);
-    });
-  }
-
-
-  else {
-    BlogPost.findById(req.query.id, (err, blogpost) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-
-      res.json(blogpost);
     });
   }
   

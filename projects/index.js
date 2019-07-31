@@ -3,6 +3,7 @@ var logger = require(path.join(__dirname, '..', 'lib', 'logger.js'));
 var Project = require('./project.js');
 var File = require('../files/files.js');
 var User = require(path.join(__dirname, '..', 'users', 'user.js'));
+var mongoose = require('mongoose');
 const express = require('express');
 const app = module.exports = express();
 
@@ -40,10 +41,23 @@ app.get('/api/projects', (req, res) => {
                 res.status(404).send("That project does not exist");
 
             } else {
-                res.contentType(project.type)
-                res.send(project.data);
+                
+                res.json(project);
             }
         });
+    }
+
+    else if (req.query.latest !== undefined && req.query.latest === "true") {
+        Project.find().sort({dateStarted: -1}).limit(1).exec((err, project) => {
+            if (err) {
+                logger.info("error");
+                res.status(500).send(err);
+            }
+
+            else {
+                res.json(project);
+            }
+        })
     }
 
     else if (Object.entries(req.query).length === 0 && req.query.constructor === Object) {
@@ -116,6 +130,10 @@ app.post('/api/projects', (req, res) => {
                 website: req.body.website,
                 repositorySite: req.body.repositorySite,
                 technologies: req.body.technologies.split(',')});
+
+            if (req.body.dateStarted !== null && req.body.dateStarted === "") {
+                projectObject.datePosted = req.body.datePosted;
+            }
 
             projectObject.save((err) => {
                 if (err) {
