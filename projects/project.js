@@ -23,6 +23,11 @@ var projectSchema = new Schema({
         type: [String]
     },
 
+    dateStarted: {
+        type: Date,
+        default: Date.now
+    },
+
     website: {
         type: String,
         default: ""
