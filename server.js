@@ -8,7 +8,6 @@ const methodOverride = require('method-override');
 const path = require('path');
 const fs = require('fs');
 const logger = require(path.join(__dirname, 'lib', 'logger.js'));
-const https = require('https');
 const http = require('http');
 const config = require('./config/config.js');
 const sessions = require('./sessions/index.js');
@@ -30,8 +29,6 @@ mongoose.connect(config.dbOptions.readWriteUrl, {
     .then(() => console.log("mongoose connection successful"))
     .catch((err) => console.log("mongoose connection successful: " + err));
 
-// set the static files location
-app.use(express.static('./client'));
 
 // setup the access logger
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), {flags: 'a'});
@@ -60,13 +57,6 @@ app.use(content);
 // routes ======================================================================
 require('./routes.js')(app);
 
-var options = {
- key: fs.readFileSync(config.connectionOptions.privkey),
- cert: fs.readFileSync(config.connectionOptions.fullchain),
- ca: fs.readFileSync(config.connectionOptions.chain)
-};
-
 http.createServer(app).listen(config.connectionOptions.httpPort);
-https.createServer(options, app).listen(config.connectionOptions.httpsPort);
 
-logger.info("App listening on port " + config.connectionOptions.httpPort + " and " + config.connectionOptions.httpsPort);
+logger.info("App listening on port " + config.connectionOptions.httpPort);
