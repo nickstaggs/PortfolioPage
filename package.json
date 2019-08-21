@@ -41,7 +41,7 @@
   "scripts": {
     "prenoderestart": "kill $(ps aux | grep '[n]ode' | awk '{print $2}')",
     "noderestart": "nohup node server.js &",
-    "start": "nohup node server.js &",
+    "start": "node server.js",
     "test": "karma start karma.conf.js"
   },
   "devDependencies": {
