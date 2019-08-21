@@ -12,7 +12,10 @@ config.dbOptions.password = process.env.mongoPassword;
 
 
 let origins = process.env.corsOrigin;
-let originsArr = origins.split(',');
+let originsArr = null;
+if (origins !== undefined) {
+    originsArr = origins.split(',');
+}
 
 config.cors.origin = originsArr || 'http://localhost:8080';
 

@@ -1,7 +1,5 @@
 var path = require('path');
 var logger = require(path.join(__dirname, 'lib', 'logger.js'));
-var fs = require('fs');
-var config = require('./config/config.js');
 
 module.exports = function (app) {
 
@@ -13,8 +11,6 @@ module.exports = function (app) {
     }
 
     logger.info(req.session.user);
-
-    res.sendFile(path.join(__dirname, 'client', 'index.html'));
   });
 
 
@@ -25,7 +21,5 @@ module.exports = function (app) {
     if (!req.session.user) {
       session.user='guest';
     }
-
-    res.sendFile(path.join(__dirname, 'client', 'index.html'));
   });
 }
