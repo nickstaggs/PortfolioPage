@@ -3,7 +3,7 @@ var logger = require(path.join(__dirname, 'lib', 'logger.js'));
 
 module.exports = function (app) {
 
-  app.get('/', function(req, res) {
+  app.get('/', function(req, res, next) {
 
     var session = req.session;
     if (!req.session.user) {
@@ -11,6 +11,8 @@ module.exports = function (app) {
     }
 
     logger.info(req.session.user);
+
+    next();
   });
 
 
@@ -21,5 +23,7 @@ module.exports = function (app) {
     if (!req.session.user) {
       session.user='guest';
     }
+
+    res.send("Oops, that page doesn't exist",404);
   });
 }
