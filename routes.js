@@ -3,7 +3,7 @@ var logger = require(path.join(__dirname, 'lib', 'logger.js'));
 
 module.exports = function (app) {
 
-  app.get('/', function(req, res, next) {
+  app.use(function(req, res, next) {
 
     var session = req.session;
     if (!req.session.user) {
