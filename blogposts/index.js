@@ -50,11 +50,6 @@ app.get('/api/blogposts', (req, res) => {
         res.status(500).send(err);
       }
 
-      var i;
-      for (i = 0; i < blogPosts.length; i++) {
-        blogPosts[i].datePosted = moment(blogPosts[i].datePosted).format('MMMM Do, YYYY');
-      }
-
       logger.info("sending blogPosts");
       res.json(blogPosts);
     });
@@ -116,7 +111,7 @@ app.get('/api/blogPosts/:blogpostUrl', (req, res) => {
           let buffer = new Buffer(blogFile.data, 'base64');
           let text = buffer.toString('utf8');
           post.body = converter.makeHtml(text);
-          post.date = moment(blogPost.datePosted).format('MMMM Do, YYYY');
+          post.date = blogPost.datePosted;
           post.title = blogPost.title;
           post.tags = blogPost.tags;
 
